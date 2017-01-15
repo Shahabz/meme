@@ -1,0 +1,310 @@
+fileFormatVersion: 2
+guid: 318159ef1c5f0b4489e63affbfd394e3
+timeCreated: 1484462302
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: rightarm_1
+    21300002: rightarm_2
+    21300004: leftarm_1
+    21300006: leftarm_2
+    21300008: head
+    21300010: goggles
+    21300012: body
+    21300014: waist
+    21300016: hip
+    21300018: rightfoot_1
+    21300020: rightfoot_2
+    21300022: leftfoot_1
+    21300024: leftfoot_2
+    21300026: rightarm_3
+    21300028: leftarm_3
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: rightarm_1
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 577.89124
+        width: 118.38075
+        height: 206.63593
+      alignment: 9
+      pivot: {x: 0.69760954, y: 0.79973966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: rightarm_2
+      rect:
+        serializedVersion: 2
+        x: 35.2552
+        y: 398.47278
+        width: 122.74478
+        height: 197.52722
+      alignment: 9
+      pivot: {x: 0.7047455, y: 0.9410172}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: leftarm_1
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 577.99994
+        width: 99
+        height: 206.00006
+      alignment: 9
+      pivot: {x: 0.14342645, y: 0.7954538}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: leftarm_2
+      rect:
+        serializedVersion: 2
+        x: 396.71844
+        y: 392.364
+        width: 128.29645
+        height: 209.22711
+      alignment: 9
+      pivot: {x: 0.441745, y: 0.8779598}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: head
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 775
+        width: 207
+        height: 102
+      alignment: 9
+      pivot: {x: 0.5058805, y: 0.28518736}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: goggles
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 721
+        width: 205
+        height: 72.99994
+      alignment: 9
+      pivot: {x: 0.52968943, y: 0.6000497}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: body
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 615
+        width: 233
+        height: 148
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: waist
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 574
+        width: 156
+        height: 53
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: hip
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 370
+        width: 279
+        height: 217
+      alignment: 9
+      pivot: {x: 0.50436294, y: 0.931934}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: rightfoot_1
+      rect:
+        serializedVersion: 2
+        x: 177.5272
+        y: 278.78244
+        width: 85.94557
+        height: 141.12555
+      alignment: 9
+      pivot: {x: 0.52832645, y: 0.74676377}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: rightfoot_2
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 93
+        width: 113
+        height: 223.5816
+      alignment: 9
+      pivot: {x: 0.47845554, y: 0.9035288}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: leftfoot_1
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 284.8912
+        width: 85.05438
+        height: 145.23438
+      alignment: 9
+      pivot: {x: 0.46773306, y: 0.67668986}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: leftfoot_2
+      rect:
+        serializedVersion: 2
+        x: 293.8368
+        y: 90.83678
+        width: 126.799164
+        height: 223.90794
+      alignment: 9
+      pivot: {x: 0.54442203, y: 0.87575847}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: rightarm_3
+      rect:
+        serializedVersion: 2
+        x: 57.211235
+        y: 256.8368
+        width: 108.788765
+        height: 158.21759
+      alignment: 9
+      pivot: {x: 0.4083114, y: 0.9270679}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: leftarm_3
+      rect:
+        serializedVersion: 2
+        x: 408.00003
+        y: 262
+        width: 123.99997
+        height: 148
+      alignment: 9
+      pivot: {x: 0.54908323, y: 0.9194641}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 97285951940912
+  assetBundleName: 
+  assetBundleVariant: 
