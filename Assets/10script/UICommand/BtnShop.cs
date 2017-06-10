@@ -11,6 +11,7 @@ public class BtnShop : MonoBehaviour {
 	private Text m_txtName;
 	public UnityEvent OnClick = new UnityEvent();
 
+	public string m_strPageKey;
 	private Button m_btn = null;
 
 	private int m_iRetryCount;
@@ -24,6 +25,11 @@ public class BtnShop : MonoBehaviour {
 			m_btn = gameObject.GetComponent<Button>();
 			m_btn.onClick.AddListener(() =>
 			{
+				if(m_strPageKey.Equals("") == false)
+				{
+					DataManager.Instance.showShop = m_strPageKey;
+					UIAssistant.main.ShowPage(DataManager.Instance.PAGENAME_COMMAND_SHOP_TOP);
+				}
 				OnClick.Invoke();
 			});
 		}

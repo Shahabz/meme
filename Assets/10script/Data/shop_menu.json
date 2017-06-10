@@ -1,0 +1,27 @@
+[
+	{
+		"name":"inn",
+		"menu":[
+			{
+				"title":"宿泊",
+				"type":"sleep"
+			},
+			{
+				"title":"話す",
+				"type":"talk"
+			},
+			{
+				"title":"依頼を受ける",
+				"type":"mission_recieve"
+			},
+			{
+				"title":"依頼の報告",
+				"type":"mission_report"
+			},
+			{
+				"title":"店から出る",
+				"type":"exit"
+			},
+		]
+	}
+]

@@ -15,7 +15,13 @@ public class DataManager : DataManagerBase<DataManager> {
 	public readonly string SPREAD_SHEET_SHEET_ID_ITEM = "og370ot";
 	public readonly string SPREAD_SHEET_SHEET_ID_NOTICE = "oxdluzv";
 	public readonly string SPREAD_SHEET_SHEET_ID_JOB = "oaj2kg8";
-	
+
+	#region ページ名
+	public readonly string PAGENAME_COMMAND_MAIN = "1_3main";
+	public readonly string PAGENAME_COMMAND_SHOP_TOP = "shop_top";
+
+	#endregion
+
 	public MasterChara masterChara = null;
 	public MasterItem masterItem = null;
 	public MasterNotice masterNotice = null;
@@ -46,6 +52,7 @@ public class DataManager : DataManagerBase<DataManager> {
 
 	// 連絡用
 	public DataCharaParam selectedDataCharaParam { get; set; }
+	public string showShop { get; set; }
 
 	public Text m_debugPrint;
 	public Text m_debugPrint2;
