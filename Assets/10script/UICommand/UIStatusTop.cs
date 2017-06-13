@@ -19,7 +19,7 @@ public class UIStatusTop : CPanel {
 		m_bannerCharaName.Clear();
 		foreach(DataCharaParam param in DataManager.Instance.dataChara.list)
 		{
-			BannerCharaName banner = PrefabManager.Instance.MakeScript<BannerCharaName>("prefab/BannerCharaName", m_rootBanner);
+			BannerCharaName banner = PrefabManager.Instance.MakeScript<BannerCharaName>("BannerCharaName", m_rootBanner);
 			banner.Initialize(param);
 			m_bannerCharaName.Add(banner);
 		}

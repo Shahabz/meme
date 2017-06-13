@@ -27,15 +27,26 @@ public class UIShopMenu : CPanel {
 
 	public Data[] m_menuData;
 
+	private Data m_dataActive;
+
 	protected override void panelStart()
 	{
 		base.panelStart();
 
-		DeleteObjects<BtnShop>(m_goMenuRoot);
+		DeleteObjects<BtnShopMenu>(m_goMenuRoot);
 
-		for( int i = 0; i < 3; i++)
+		foreach( Data d in m_menuData)
 		{
-			//GameObject obj = PrefabManager.Instance.MakeObject("BtnShopMenu" , m_goMenuRoot);
+			if (DataManager.Instance.showShop.Equals(d.name)){
+				m_dataActive = d;
+				break;
+			}
+		}
+
+		for( int i = 0; i < m_dataActive.menuArr.Length; i++)
+		{
+			BtnShopMenu script = PrefabManager.Instance.MakeScript<BtnShopMenu>("BtnShopMenu", m_goMenuRoot);
+			script.Initialize(m_dataActive.menuArr[i]);
 		}
 	}
 

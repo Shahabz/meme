@@ -23,5 +23,63 @@
 				"type":"exit"
 			},
 		]
+	},
+	{
+		"name":"weapon",
+		"menu":[
+			{
+				"title":"武具を買う",
+				"type":"weapon_buy"
+			},
+			{
+				"title":"武具を売る",
+				"type":"weapon_sell"
+			},
+			{
+				"title":"話す",
+				"type":"talk"
+			},
+			{
+				"title":"依頼を受ける",
+				"type":"mission_recieve"
+			},
+			{
+				"title":"依頼の報告",
+				"type":"mission_report"
+			},
+			{
+				"title":"店から出る",
+				"type":"exit"
+			},
+		]
+	},
+	{
+		"name":"goods",
+		"menu":[
+			{
+				"title":"道具を買う",
+				"type":"goods_buy"
+			},
+			{
+				"title":"道具を売る",
+				"type":"goods_sell"
+			},
+			{
+				"title":"話す",
+				"type":"talk"
+			},
+			{
+				"title":"依頼を受ける",
+				"type":"mission_recieve"
+			},
+			{
+				"title":"依頼の報告",
+				"type":"mission_report"
+			},
+			{
+				"title":"店から出る",
+				"type":"exit"
+			},
+		]
 	}
 ]
