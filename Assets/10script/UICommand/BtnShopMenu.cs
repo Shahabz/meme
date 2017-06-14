@@ -13,6 +13,6 @@ public class BtnShopMenu : MonoBehaviour {
 	public void Initialize(UIShopMenu.Menu _menu)
 	{
 		m_menu = _menu;
-		m_txtTitle.text = _menu.title;
+		m_txtTitle.text = m_menu.title;
 	}
 }
