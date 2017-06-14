@@ -59,8 +59,10 @@ public class DataManager : DataManagerBase<DataManager> {
 	public SkitRoot skitroot;
 	void Update()
 	{
+		/*
 		m_debugPrint.text = skitroot.SkitCanvasHeightOriginal.ToString();
 		m_debugPrint2.text = skitroot.SkitCanvasHeightMax.ToString();
+		*/
 	}
 
 }
