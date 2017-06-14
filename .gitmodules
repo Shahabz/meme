@@ -1,9 +1,6 @@
 [submodule "Assets/everystudio-library"]
 	path = Assets/everystudio-library
 	url = https://github.com/everystudio/everystudio-library
-[submodule "Assets/meme.Game"]
-	path = Assets/meme.Game
-	url = https://github.com/everystudio/meme.Game
 [submodule "Assets/meme.Resources"]
 	path = Assets/meme.Resources
 	url = https://github.com/everystudio/meme.Resources
