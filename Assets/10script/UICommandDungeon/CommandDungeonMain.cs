@@ -6,11 +6,11 @@ public class CommandDungeonMain : Singleton<CommandDungeonMain> {
 
 	public void OnClickRouteRight()
 	{
-		Debug.Log("OnClickRouteRight");
+		Debug.Log("OnClickRouteRight!");
 
 	}
 	public void OnClickRouteLeft()
 	{
-		Debug.Log("OnClickRouteLeft");
+		Debug.Log("OnClickRouteLeft!");
 	}
 }
