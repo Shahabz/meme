@@ -11,7 +11,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: EveryStudio
-  productName: Meme
+  productName: "\u30B3\u30DE\u30C0\u30F3"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21176471, a: 1}
@@ -118,8 +118,8 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: jp.everystudio.meme
-  bundleVersion: 1.0
+  bundleIdentifier: jp.everystudio.dungeon.command
+  bundleVersion: 1.0.0
   preloadedAssets: []
   metroInputSource: 0
   m_HolographicPauseOnTrackingLoss: 1
