@@ -5,6 +5,7 @@ using UnityEngine;
 public class DataCharaParam : CsvDataParam
 {
 	public int chara_serial { get; set; }
+	public int level { get; set; }
 	public int chara_id { get; set; }
 	public int job_id { get; set; }
 	public int party_id { get; set; }

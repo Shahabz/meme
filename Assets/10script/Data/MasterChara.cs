@@ -30,6 +30,15 @@ public class MasterChara : CsvData<MasterCharaParam> {
 			dict.Add(param.chara_id, param);
 		}
 	}
+	public string GetName(int _charaId)
+	{
+		MasterCharaParam param = Get(_charaId);
+		if( param != null)
+		{
+			return param.name;
+		}
+		return "";
+	}
 
 
 	protected override void afterRecievedSpreadSheet()

@@ -2,19 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EQUIP_TYPE{
-	WEAPON		= 0,
-	ARMOR		,
-	ACCESSARY	,
-};
-
-public class MasterEquipParam : CsvDataParam
+public class MasterBattleSkillParam : CsvDataParam
 {
-	public int equip_id { get; set; }
-	public int equip_type { get; set; }
-	public string check_equip_type { get; set; }
+	public int battle_skill_id { get; set; }
+	public string battle_skill_type { get; set; }
+
 	public string name { get; set; }
 	public string description { get; set; }
+
+	public int turn { get; set; }
+
 	public int atk { get; set; }
 	public int def { get; set; }
 	public int mat { get; set; }
@@ -29,26 +26,25 @@ public class MasterEquipParam : CsvDataParam
 	public int att_wind { get; set; }
 	public int att_eath { get; set; }
 	public int att_time { get; set; }
+
 }
 
-public class MasterEquip : CsvData<MasterEquipParam> {
-	public const string SPREAD_SHEET_PAGE = "14NT9a0VRO4xSK2SEupSxg4_fqoSMNoD1U69BKF228CM";
-	public const string SPREAD_SHEET_ID = "od6";
-	private Dictionary<int, MasterEquipParam> dict = new Dictionary<int, MasterEquipParam>();
+public class MasterBattleSkill : CsvData<MasterBattleSkillParam> {
+	private Dictionary<int, MasterBattleSkillParam> dict = new Dictionary<int, MasterBattleSkillParam>();
 
-	public MasterEquipParam Get( int _iEquipId)
+	public MasterBattleSkillParam Get(int _iBattleSkillId)
 	{
-		MasterEquipParam retParam = null;
-		dict.TryGetValue(_iEquipId, out retParam);
+		MasterBattleSkillParam retParam = null;
+		dict.TryGetValue(_iBattleSkillId, out retParam);
 		return retParam;
 	}
 
 	private void SetupDict()
 	{
 		dict.Clear();
-		foreach (MasterEquipParam param in list)
+		foreach (MasterBattleSkillParam param in list)
 		{
-			dict.Add(param.equip_id, param);
+			dict.Add(param.battle_skill_id, param);
 		}
 	}
 
@@ -57,7 +53,5 @@ public class MasterEquip : CsvData<MasterEquipParam> {
 		base.afterRecievedSpreadSheet();
 		SetupDict();
 	}
+
 }
-
-
-

@@ -15,6 +15,9 @@ public class DataManager : DataManagerBase<DataManager> {
 	public readonly string SPREAD_SHEET_SHEET_ID_ITEM = "og370ot";
 	public readonly string SPREAD_SHEET_SHEET_ID_NOTICE = "oxdluzv";
 	public readonly string SPREAD_SHEET_SHEET_ID_JOB = "oaj2kg8";
+	public readonly string SPREAD_SHEET_SHEET_ID_MISSION = "odqgmhv";
+	public readonly string SPREAD_SHEET_SHEET_ID_EQUIP_SKILL = "op4kw0b";
+	public readonly string SPREAD_SHEET_SHEET_ID_BATTLE_SKILL = "otm2e00";
 
 	#region ページ名
 	public readonly string PAGENAME_COMMAND_MAIN = "1_3main";
@@ -27,6 +30,9 @@ public class DataManager : DataManagerBase<DataManager> {
 	public MasterNotice masterNotice = null;
 	public MasterEquip masterEquip = null;
 	public MasterEquipType masterEquipType = null;
+	public MasterMission masterMission = null;
+	public MasterEquipSkill masterEquipSkill = null;
+	public MasterBattleSkill masterBattleSkill = null;
 
 	public override void Initialize()
 	{
@@ -43,12 +49,26 @@ public class DataManager : DataManagerBase<DataManager> {
 		masterEquip.LoadSpreadSheet(CONFIG_SPREAD_SHEET, SPREAD_SHEET_SHEET_ID_EQUIP);
 		masterEquipType = new MasterEquipType();
 		masterEquipType.LoadSpreadSheet(CONFIG_SPREAD_SHEET, SPREAD_SHEET_SHEET_ID_EQUIP_TYPE);
-
+		masterMission = new MasterMission();
+		masterMission.LoadSpreadSheet(CONFIG_SPREAD_SHEET, SPREAD_SHEET_SHEET_ID_MISSION);
+		masterEquipSkill = new MasterEquipSkill();
+		masterEquipSkill.LoadSpreadSheet(CONFIG_SPREAD_SHEET, SPREAD_SHEET_SHEET_ID_EQUIP_SKILL);
+		masterBattleSkill = new MasterBattleSkill();
+		masterBattleSkill.LoadSpreadSheet(CONFIG_SPREAD_SHEET, SPREAD_SHEET_SHEET_ID_BATTLE_SKILL);
+		
 		dataItem = new DataItem();
 		dataChara = new DataChara();
+		dataEquip = new DataEquip();
+		dataMission = new DataMission();
+		dataEquipSkill = new DataEquipSkill();
+		dataBattleSkill = new DataBattleSkill();
 	}
 	public DataItem dataItem;
 	public DataChara dataChara;
+	public DataEquip dataEquip;
+	public DataMission dataMission;
+	public DataEquipSkill dataEquipSkill;
+	public DataBattleSkill dataBattleSkill;
 
 	// 連絡用
 	public DataCharaParam selectedDataCharaParam { get; set; }
