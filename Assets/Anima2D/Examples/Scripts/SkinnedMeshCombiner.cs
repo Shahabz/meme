@@ -5,16 +5,18 @@ using Anima2D;
 public class SkinnedMeshCombiner : MonoBehaviour
 {
 	[SerializeField]
-	SpriteMeshInstance[] m_SpriteMeshInstances;
+	private SpriteMeshInstance[] m_SpriteMeshInstances;
+	private MaterialPropertyBlock m_MaterialPropertyBlock;
+	private SkinnedMeshRenderer m_CachedSkinnedRenderer;
 
-	SpriteMeshInstance[] spriteMeshInstances {
-		get {
-			return m_SpriteMeshInstances;
-		}
+	public SpriteMeshInstance[] spriteMeshInstances
+	{
+		get { return m_SpriteMeshInstances; }
+		set { m_SpriteMeshInstances = value; }
 	}
 
-	MaterialPropertyBlock m_MaterialPropertyBlock;
-	MaterialPropertyBlock materialPropertyBlock {
+	private MaterialPropertyBlock materialPropertyBlock
+	{
 		get {
 			if(m_MaterialPropertyBlock == null)
 			{
@@ -25,9 +27,10 @@ public class SkinnedMeshCombiner : MonoBehaviour
 		}
 	}
 
-	SkinnedMeshRenderer m_CachedSkinnedRenderer;
-	public SkinnedMeshRenderer cachedSkinnedRenderer {
-		get {
+	public SkinnedMeshRenderer cachedSkinnedRenderer
+	{
+		get
+		{
 			if(!m_CachedSkinnedRenderer)
 			{
 				m_CachedSkinnedRenderer = GetComponent<SkinnedMeshRenderer>();
@@ -40,9 +43,11 @@ public class SkinnedMeshCombiner : MonoBehaviour
 	void Start()
 	{        
 		Vector3 l_position = transform.position;
+		Quaternion l_rotation = transform.rotation;
 		Vector3 l_scale = transform.localScale;
 
 		transform.position = Vector3.zero;
+		transform.rotation = Quaternion.identity;
 		transform.localScale = Vector3.one;
 
 		List<Transform> bones = new List<Transform>();        
@@ -114,8 +119,9 @@ public class SkinnedMeshCombiner : MonoBehaviour
 		}
 		
 		SkinnedMeshRenderer combinedSkinnedRenderer = gameObject.AddComponent<SkinnedMeshRenderer>();
-		combinedSkinnedRenderer.sharedMesh = new Mesh();
-		combinedSkinnedRenderer.sharedMesh.CombineMeshes( combineInstances.ToArray(), true, true );
+		Mesh combinedMesh = new Mesh();
+		combinedMesh.CombineMeshes( combineInstances.ToArray(), true, true );
+		combinedSkinnedRenderer.sharedMesh = combinedMesh;
 		combinedSkinnedRenderer.bones = bones.ToArray();
 		combinedSkinnedRenderer.sharedMesh.boneWeights = boneWeights.ToArray();
 		combinedSkinnedRenderer.sharedMesh.bindposes = bindposes.ToArray();
@@ -124,6 +130,7 @@ public class SkinnedMeshCombiner : MonoBehaviour
 		combinedSkinnedRenderer.materials = spriteMeshInstances[0].sharedMaterials;
 
 		transform.position = l_position;
+		transform.rotation = l_rotation;
 		transform.localScale = l_scale;
 	}
 
@@ -133,12 +140,7 @@ public class SkinnedMeshCombiner : MonoBehaviour
 		{
 			if(materialPropertyBlock != null)
 			{
-				//if(spriteTexture)
-				//{
-					materialPropertyBlock.SetTexture("_MainTex", spriteMeshInstances[0].spriteMesh.sprite.texture);
-				//}
-				
-				//materialPropertyBlock.SetColor("_Color",color);
+				materialPropertyBlock.SetTexture("_MainTex", spriteMeshInstances[0].spriteMesh.sprite.texture);
 				
 				cachedSkinnedRenderer.SetPropertyBlock(materialPropertyBlock);
 			}

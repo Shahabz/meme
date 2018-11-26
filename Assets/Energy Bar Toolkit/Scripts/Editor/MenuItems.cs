@@ -183,27 +183,6 @@ public class MenuItems : ScriptableObject {
         TransformRenderer3DBuilder.Create();
     }
 
-    [MenuItem("Tools/Energy Bar Toolkit/Old/OnGUI Bars/Fill Renderer", false, 1210)]
-    static void CreateFillRendererOnGUI() {
-        Create<EnergyBarRenderer>("fill renderer");
-    }
-    
-    [MenuItem("Tools/Energy Bar Toolkit/Old/OnGUI Bars/Repeat Renderer", false, 1211)]
-    static void CreateRepeatRendererOnGUI() {
-        Create<EnergyBarRepeatRenderer>("repeat renderer");
-    }
-    
-    [MenuItem("Tools/Energy Bar Toolkit/Old/OnGUI Bars/Sequence Renderer", false, 1212)]
-    static void CreateSequenceRendererOnGUI() {
-        Create<EnergyBarSequenceRenderer>("sequence renderer");
-    }
-    
-    [MenuItem("Tools/Energy Bar Toolkit/Old/OnGUI Bars/Transform Renderer", false, 1213)]
-    static void CreateTransformRendererOnGUI() {
-        Create<EnergyBarTransformRenderer>("transform renderer");
-    }
- 
-    
     // ===========================================================
     // Static Methods
     // ===========================================================

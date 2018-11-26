@@ -150,23 +150,16 @@ public class FilledRendererUGUI : EnergyBarUGUIBase {
 
     #region Update Methods
 
-    private Vector2 updateSizeCachedSize;
-
     private void UpdateSize() {
         var thisRectTransform = rectTransform;
 
         Vector2 newSize = thisRectTransform.rect.size;
-        if (newSize == updateSizeCachedSize) {
-            return;
-        }
 
         for (int i = 0; i < createdChildren.Count; ++i) {
             var child = createdChildren[i];
             var otherRectTransform = child.GetComponent<RectTransform>();
             SetSize(otherRectTransform, newSize);
         }
-
-        updateSizeCachedSize = newSize;
     }
 
     // updates bar properties that do not need it to be rebuild

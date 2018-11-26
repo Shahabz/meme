@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 8
   m_Fog: 0
   m_FogColor: {r: 0.3389922, g: 0.6205575, b: 0.6985294, a: 1}
   m_FogMode: 1
@@ -25,6 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.86764705, g: 0.86764705, b: 0.86764705, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 583d690628e02dc46a38b1873ce58862, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -41,7 +42,7 @@ RenderSettings:
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 11
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -53,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 4
+    serializedVersion: 9
     m_Resolution: 1
     m_BakeResolution: 100
     m_TextureWidth: 1024
@@ -66,13 +67,30 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 0
-    m_DirectLightInLightProbes: 1
     m_FinalGather: 0
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
+    m_MixedBakeMode: 1
+    m_BakeBackend: 0
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 500
+    m_PVRBounces: 2
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVRFilteringMode: 0
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_RuntimeCPUUsage: 25
+  m_UseShadowmask: 0
 --- !u!196 &5
 NavMeshSettings:
   serializedVersion: 2
@@ -89,7 +107,11 @@ NavMeshSettings:
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.16666666
+    manualTileSize: 0
+    tileSize: 256
     accuratePlacement: 0
+    debug:
+      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1001 &5037663
 Prefab:
@@ -174,6 +196,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -189,12 +212,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &9013746
 MeshFilter:
@@ -216,6 +241,7 @@ Mesh:
     firstByte: 0
     indexCount: 24
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 24
     localAABB:
@@ -233,6 +259,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000080009000500090004000500100011001200120011001300140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -414,6 +441,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -429,12 +457,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &31783030
 MeshFilter:
@@ -532,13 +562,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 533424731}
   lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  fTile: {fileID: 1023810975}
   bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  uTile: {fileID: 2081311475}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -546,12 +575,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &64082684
 MonoBehaviour:
@@ -664,26 +693,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 2145292019}
   lTile: {fileID: 0}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  bTile: {fileID: 334686283}
+  uTile: {fileID: 975232816}
+  dTile: {fileID: 1435059061}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &71438192
 MonoBehaviour:
@@ -754,6 +782,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -771,6 +800,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -967,6 +997,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 16
     vertexCount: 4
     localAABB:
@@ -984,6 +1015,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -1174,6 +1206,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -1189,12 +1222,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &102660909
 MeshFilter:
@@ -1244,6 +1279,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -1259,12 +1295,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &105416950
 MeshFilter:
@@ -1314,6 +1352,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -1329,12 +1368,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &109531462
 MeshFilter:
@@ -1441,6 +1482,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -1458,6 +1500,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -1569,6 +1612,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 10
     localAABB:
@@ -1586,6 +1630,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000080009000500090004000500
   m_Skin: []
   m_VertexData:
@@ -1725,6 +1770,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -1740,12 +1786,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &122682111
 MeshFilter:
@@ -1767,6 +1815,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -1784,6 +1833,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -1895,6 +1945,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 20
     vertexCount: 4
     localAABB:
@@ -1912,6 +1963,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -2094,6 +2146,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -2109,12 +2162,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &141125553
 MeshFilter:
@@ -2136,6 +2191,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -2153,6 +2209,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -2292,6 +2349,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -2307,12 +2365,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &150365923
 MeshFilter:
@@ -2334,6 +2394,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -2351,6 +2412,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -2533,6 +2595,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -2548,12 +2611,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &163682815
 MeshFilter:
@@ -2603,6 +2668,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -2618,12 +2684,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &165202840
 MeshFilter:
@@ -2645,6 +2713,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 20
     vertexCount: 4
     localAABB:
@@ -2662,6 +2731,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -2773,6 +2843,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 16
     vertexCount: 4
     localAABB:
@@ -2790,6 +2861,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -2929,6 +3001,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -2944,12 +3017,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &177229477
 MeshFilter:
@@ -3005,26 +3080,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 728588590}
   lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  fTile: {fileID: 975232816}
+  bTile: {fileID: 1835936987}
+  uTile: {fileID: 1630049946}
+  dTile: {fileID: 334686283}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &182620618
 MonoBehaviour:
@@ -3165,6 +3239,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -3180,12 +3255,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &201585548
 MeshFilter:
@@ -3361,6 +3438,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -3376,12 +3454,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &234832075
 MeshFilter:
@@ -3480,13 +3560,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 661358783}
   lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  fTile: {fileID: 1435059061}
+  bTile: {fileID: 1023810975}
+  uTile: {fileID: 334686283}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -3494,12 +3573,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &235891457
 MonoBehaviour:
@@ -3555,6 +3634,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -3570,12 +3650,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &243160725
 MeshFilter:
@@ -3639,6 +3721,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 35
     localAABB:
@@ -3656,6 +3739,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 230024000600060004002300040025002300240026000600
   m_Skin: []
   m_VertexData:
@@ -3843,26 +3927,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 1658035904}
+  lTile: {fileID: 2145292019}
+  fTile: {fileID: 1495024521}
+  bTile: {fileID: 1178753036}
+  uTile: {fileID: 486286941}
+  dTile: {fileID: 2018491896}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &261026445
 MonoBehaviour:
@@ -3890,6 +3973,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 24
     localAABB:
@@ -3907,6 +3991,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -4052,26 +4137,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  lTile: {fileID: 608132038}
+  fTile: {fileID: 1259722835}
+  bTile: {fileID: 1351257606}
+  uTile: {fileID: 1785078463}
+  dTile: {fileID: 936474584}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &264281136
 MonoBehaviour:
@@ -4141,6 +4225,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 16
     vertexCount: 4
     localAABB:
@@ -4158,6 +4243,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -4340,6 +4426,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -4355,12 +4442,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &272489360
 MeshFilter:
@@ -4382,6 +4471,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 20
     vertexCount: 4
     localAABB:
@@ -4399,6 +4489,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -4595,6 +4686,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -4612,6 +4704,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -4799,13 +4892,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 976308707}
   lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  fTile: {fileID: 1132787004}
+  bTile: {fileID: 1202182657}
+  uTile: {fileID: 684045032}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -4813,12 +4905,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &295631530
 MonoBehaviour:
@@ -4979,6 +5071,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 16
     vertexCount: 4
     localAABB:
@@ -4996,6 +5089,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -5141,26 +5235,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  rTile: {fileID: 1785078463}
+  lTile: {fileID: 1366894261}
+  fTile: {fileID: 1048818997}
+  bTile: {fileID: 1788461898}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 608132038}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &331330413
 MonoBehaviour:
@@ -5222,26 +5315,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 857939343}
   lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  fTile: {fileID: 71438191}
+  bTile: {fileID: 2136222414}
+  uTile: {fileID: 182620617}
+  dTile: {fileID: 235891456}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &334686284
 MonoBehaviour:
@@ -5312,6 +5404,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -5329,6 +5422,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -5511,6 +5605,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -5526,12 +5621,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &344364009
 MeshFilter:
@@ -5624,6 +5721,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -5639,12 +5737,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &373942969
 MeshFilter:
@@ -5666,6 +5766,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -5683,6 +5784,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -5794,6 +5896,7 @@ Mesh:
     firstByte: 0
     indexCount: 18
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 20
     localAABB:
@@ -5811,6 +5914,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000080009000500090004000500100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -5993,6 +6097,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -6008,12 +6113,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &403573580
 MeshFilter:
@@ -6105,6 +6212,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -6120,12 +6228,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &412455097
 MeshFilter:
@@ -6147,6 +6257,7 @@ Mesh:
     firstByte: 0
     indexCount: 18
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 24
     localAABB:
@@ -6164,6 +6275,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000080009000500090004000500140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -6275,6 +6387,7 @@ Mesh:
     firstByte: 0
     indexCount: 18
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 24
     localAABB:
@@ -6292,6 +6405,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000100011001200120011001300140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -6437,26 +6551,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  rTile: {fileID: 1788461898}
+  lTile: {fileID: 1795140019}
+  fTile: {fileID: 1366894261}
   bTile: {fileID: 0}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 1631773657}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &425276851
 MonoBehaviour:
@@ -6512,6 +6625,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -6527,12 +6641,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &450078038
 MeshFilter:
@@ -6672,6 +6788,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -6687,12 +6804,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &454589341
 MeshFilter:
@@ -6748,26 +6867,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 1894283202}
+  lTile: {fileID: 1340651526}
+  fTile: {fileID: 1096860440}
+  bTile: {fileID: 2141677015}
+  uTile: {fileID: 1931808023}
+  dTile: {fileID: 1658035904}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &458003782
 MonoBehaviour:
@@ -6829,26 +6947,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 1795140019}
   lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  fTile: {fileID: 1462289154}
   bTile: {fileID: 0}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 700075847}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &458153224
 MonoBehaviour:
@@ -6904,6 +7021,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -6919,12 +7037,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &459001513
 MeshFilter:
@@ -7062,6 +7182,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -7077,12 +7198,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &460251680
 MeshFilter:
@@ -7132,6 +7255,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -7147,12 +7271,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &461512225
 MeshFilter:
@@ -7216,6 +7342,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 16
     localAABB:
@@ -7233,6 +7360,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 080009000500090004000500100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -7414,6 +7542,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -7429,12 +7558,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &478605228
 MeshFilter:
@@ -7533,26 +7664,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 1
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
+  rTile: {fileID: 458003781}
+  lTile: {fileID: 1504218142}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  bTile: {fileID: 2129275650}
+  uTile: {fileID: 1340651526}
+  dTile: {fileID: 261026444}
   rSide: 101
   lSide: 101
   fSide: 101
   bSide: 101
   uSide: 101
   dSide: 101
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 101
+  lSideWorld: 101
+  fSideWorld: 101
+  bSideWorld: 101
+  uSideWorld: 101
+  dSideWorld: 101
   sideRemovedCounter: 0
 --- !u!114 &486286942
 MonoBehaviour:
@@ -7622,6 +7752,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -7639,6 +7770,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -7778,6 +7910,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -7793,12 +7926,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &503604556
 MeshFilter:
@@ -7854,26 +7989,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  rTile: {fileID: 2095421887}
+  lTile: {fileID: 987028799}
+  fTile: {fileID: 1434937515}
   bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  uTile: {fileID: 766198380}
+  dTile: {fileID: 2005531148}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &503936911
 MonoBehaviour:
@@ -7943,6 +8077,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 20
     localAABB:
@@ -7960,6 +8095,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -8141,6 +8277,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -8156,12 +8293,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &513454162
 MeshFilter:
@@ -8340,6 +8479,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -8355,12 +8495,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &520386160
 MeshFilter:
@@ -8382,6 +8524,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 16
     vertexCount: 4
     localAABB:
@@ -8399,6 +8542,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -8544,13 +8688,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  rTile: {fileID: 1730417143}
+  lTile: {fileID: 64082683}
+  fTile: {fileID: 692134044}
   bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  uTile: {fileID: 2094995053}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -8558,12 +8701,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &533424732
 MonoBehaviour:
@@ -8619,6 +8762,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -8634,12 +8778,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &536812571
 MeshFilter:
@@ -8661,6 +8807,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 16
     vertexCount: 4
     localAABB:
@@ -8678,6 +8825,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -8945,6 +9093,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -8960,12 +9109,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &568220051
 MeshFilter:
@@ -9015,6 +9166,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -9030,12 +9182,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &573973929
 MeshFilter:
@@ -9085,6 +9239,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -9100,12 +9255,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &578403805
 MeshFilter:
@@ -9204,26 +9361,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  rTile: {fileID: 1666909903}
+  lTile: {fileID: 1630049946}
+  fTile: {fileID: 943426592}
+  bTile: {fileID: 2001017424}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 728588590}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &579031417
 MonoBehaviour:
@@ -9251,6 +9407,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 20
     vertexCount: 4
     localAABB:
@@ -9268,6 +9425,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -9449,6 +9607,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -9464,12 +9623,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &602347888
 MeshFilter:
@@ -9568,26 +9729,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 264281135}
+  lTile: {fileID: 1959085379}
+  fTile: {fileID: 2141677015}
+  bTile: {fileID: 766198380}
+  uTile: {fileID: 331330412}
+  dTile: {fileID: 1434937515}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &608132039
 MonoBehaviour:
@@ -9700,6 +9860,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 4
     localAABB:
@@ -9717,6 +9878,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 000002000100020003000100
   m_Skin: []
   m_VertexData:
@@ -9856,6 +10018,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -9871,12 +10034,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &621297696
 MeshFilter:
@@ -10011,6 +10176,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -10026,12 +10192,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &635202686
 MeshFilter:
@@ -10139,6 +10307,7 @@ Mesh:
     firstByte: 0
     indexCount: 66
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 41
     localAABB:
@@ -10156,6 +10325,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 0b0008000e0008000f000e0022000b0023000b0024002300040006001000060007001000100007001100110007000500120013000c00130014000c00140015000c0016000a00170017000a00180018000a0019001a001b001c001b001d001c001e001f0020001f002100200025002600270026002800270029002a002b002a002c002b00
   m_Skin: []
   m_VertexData:
@@ -10301,13 +10471,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  rTile: {fileID: 1781430192}
+  lTile: {fileID: 235891456}
+  fTile: {fileID: 1202182657}
+  bTile: {fileID: 692134044}
+  uTile: {fileID: 857939343}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -10315,12 +10484,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &661358784
 MonoBehaviour:
@@ -10376,6 +10545,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -10391,12 +10561,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &662072189
 MeshFilter:
@@ -10494,13 +10666,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
+  lTile: {fileID: 700971365}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  bTile: {fileID: 1530124091}
+  uTile: {fileID: 1626475108}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -10508,12 +10679,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &677604676
 MonoBehaviour:
@@ -10569,6 +10740,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -10584,12 +10756,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &678160897
 MeshFilter:
@@ -10654,6 +10828,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 20
     vertexCount: 4
     localAABB:
@@ -10671,6 +10846,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -10858,26 +11034,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 1495024521}
   lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  fTile: {fileID: 2104294875}
+  bTile: {fileID: 2145292019}
+  uTile: {fileID: 2076691508}
+  dTile: {fileID: 295631529}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &684045033
 MonoBehaviour:
@@ -10947,6 +11122,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 10
     localAABB:
@@ -10964,6 +11140,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000080009000500090004000500
   m_Skin: []
   m_VertexData:
@@ -11109,13 +11286,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  rTile: {fileID: 1522038441}
+  lTile: {fileID: 1023810975}
+  fTile: {fileID: 661358783}
+  bTile: {fileID: 533424731}
+  uTile: {fileID: 1750580359}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -11123,12 +11299,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &692134045
 MonoBehaviour:
@@ -11156,6 +11332,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -11173,6 +11350,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -11318,26 +11496,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 1766008057}
   lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  fTile: {fileID: 1835936987}
   bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  uTile: {fileID: 458153223}
+  dTile: {fileID: 2081311475}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &700075848
 MonoBehaviour:
@@ -11399,26 +11576,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 1
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
+  lTile: {fileID: 2104294875}
   fTile: {fileID: 0}
   bTile: {fileID: 0}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 1632150011}
   rSide: 102
   lSide: 102
   fSide: 102
   bSide: 102
   uSide: -1
   dSide: 101
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 102
+  lSideWorld: 102
+  fSideWorld: 102
+  bSideWorld: 102
+  uSideWorld: -1
+  dSideWorld: 101
   sideRemovedCounter: 0
 --- !u!114 &700971366
 MonoBehaviour:
@@ -11446,6 +11622,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 20
     vertexCount: 4
     localAABB:
@@ -11463,6 +11640,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -11574,6 +11752,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -11591,6 +11770,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -11730,6 +11910,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -11745,12 +11926,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &708355614
 MeshFilter:
@@ -11815,6 +11998,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 20
     vertexCount: 4
     localAABB:
@@ -11832,6 +12016,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -11971,6 +12156,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -11986,12 +12172,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &724727569
 MeshFilter:
@@ -12013,6 +12201,7 @@ Mesh:
     firstByte: 0
     indexCount: 24
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 24
     localAABB:
@@ -12030,6 +12219,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000080009000500090004000500100011001200120011001300140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -12175,26 +12365,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 1666909903}
+  lTile: {fileID: 182620617}
+  fTile: {fileID: 1504218142}
+  bTile: {fileID: 738964055}
+  uTile: {fileID: 579031416}
+  dTile: {fileID: 857939343}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &728588591
 MonoBehaviour:
@@ -12222,6 +12411,7 @@ Mesh:
     firstByte: 0
     indexCount: 66
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 45
     localAABB:
@@ -12239,6 +12429,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 02000900000000000900010009000d00010001000d0003000b0008000e0008000f000e0022000b0023000b0024002300120013000c00130014000c00140015000c0016000a00170017000a00180018000a0019001a001b001c001b001d001c001e001f0020001f002100200025002600270026002800270029002a002b002a002c002b00
   m_Skin: []
   m_VertexData:
@@ -12427,26 +12618,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 1959085379}
+  lTile: {fileID: 1835936987}
+  fTile: {fileID: 728588590}
+  bTile: {fileID: 1766008057}
+  uTile: {fileID: 2001017424}
+  dTile: {fileID: 1750580359}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &738964056
 MonoBehaviour:
@@ -12587,6 +12777,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -12602,12 +12793,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &751724139
 MeshFilter:
@@ -12663,26 +12856,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  lTile: {fileID: 1129949740}
+  fTile: {fileID: 1675143641}
+  bTile: {fileID: 936474584}
+  uTile: {fileID: 1259722835}
+  dTile: {fileID: 1931686457}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &758951098
 MonoBehaviour:
@@ -12744,13 +12936,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  rTile: {fileID: 1931686457}
+  lTile: {fileID: 1781430192}
+  fTile: {fileID: 1996057141}
+  bTile: {fileID: 1987063667}
+  uTile: {fileID: 1129949740}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -12758,12 +12949,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &762289247
 MonoBehaviour:
@@ -12869,26 +13060,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  rTile: {fileID: 1351257606}
+  lTile: {fileID: 1631773657}
+  fTile: {fileID: 608132038}
   bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  uTile: {fileID: 1788461898}
+  dTile: {fileID: 503936910}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &766198381
 MonoBehaviour:
@@ -13038,6 +13228,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -13053,12 +13244,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &774363904
 MeshFilter:
@@ -13080,6 +13273,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 35
     localAABB:
@@ -13097,6 +13291,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 230024000600060004002300040025002300240026000600
   m_Skin: []
   m_VertexData:
@@ -13236,6 +13431,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -13251,12 +13447,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &779484000
 MeshFilter:
@@ -13278,6 +13476,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -13295,6 +13494,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -13406,6 +13606,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 6
     localAABB:
@@ -13423,6 +13624,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 080009000500090004000500
   m_Skin: []
   m_VertexData:
@@ -13872,6 +14074,7 @@ Mesh:
     firstByte: 0
     indexCount: 18
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 20
     localAABB:
@@ -13889,6 +14092,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000080009000500090004000500100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -14070,6 +14274,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -14085,12 +14290,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &850446804
 MeshFilter:
@@ -14146,26 +14353,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 1178753036}
+  lTile: {fileID: 334686283}
+  fTile: {fileID: 2145292019}
+  bTile: {fileID: 1750580359}
+  uTile: {fileID: 728588590}
+  dTile: {fileID: 661358783}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &857939344
 MonoBehaviour:
@@ -14319,6 +14525,7 @@ Mesh:
     firstByte: 0
     indexCount: 24
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 24
     localAABB:
@@ -14336,6 +14543,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000080009000500090004000500100011001200120011001300140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -14489,6 +14697,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 20
     localAABB:
@@ -14506,6 +14715,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 080009000500090004000500140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -14743,6 +14953,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -14760,6 +14971,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -15032,26 +15244,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  lTile: {fileID: 1434937515}
+  fTile: {fileID: 758951097}
+  bTile: {fileID: 2095421887}
+  uTile: {fileID: 264281135}
+  dTile: {fileID: 1653582878}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &936474585
 MonoBehaviour:
@@ -15079,6 +15290,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 16
     vertexCount: 4
     localAABB:
@@ -15096,6 +15308,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -15325,26 +15538,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
+  rTile: {fileID: 1340651526}
+  lTile: {fileID: 1809270412}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  bTile: {fileID: 579031416}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 1504218142}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &943426593
 MonoBehaviour:
@@ -15400,6 +15612,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -15415,12 +15628,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &954286597
 MeshFilter:
@@ -15470,6 +15685,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -15485,12 +15701,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &955001961
 MeshFilter:
@@ -15540,6 +15758,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -15555,12 +15774,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &971143174
 MeshFilter:
@@ -15616,26 +15837,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 1504218142}
   lTile: {fileID: 0}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  bTile: {fileID: 182620617}
+  uTile: {fileID: 1809270412}
+  dTile: {fileID: 71438191}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &975232817
 MonoBehaviour:
@@ -15697,13 +15917,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  rTile: {fileID: 1530124091}
+  lTile: {fileID: 295631529}
+  fTile: {fileID: 700971365}
+  bTile: {fileID: 2018491896}
+  uTile: {fileID: 1830345791}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -15711,12 +15930,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &976308708
 MonoBehaviour:
@@ -15864,26 +16083,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  rTile: {fileID: 503936910}
+  lTile: {fileID: 2094995053}
+  fTile: {fileID: 1966809105}
   bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  uTile: {fileID: 1631773657}
+  dTile: {fileID: 1730417143}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &987028800
 MonoBehaviour:
@@ -15939,6 +16157,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -15954,12 +16173,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &991925079
 MeshFilter:
@@ -16134,6 +16355,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -16149,12 +16371,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1008303778
 MeshFilter:
@@ -16204,6 +16428,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -16219,12 +16444,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1012029291
 MeshFilter:
@@ -16246,6 +16473,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 10
     localAABB:
@@ -16263,6 +16491,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000080009000500090004000500
   m_Skin: []
   m_VertexData:
@@ -16445,6 +16674,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -16460,12 +16690,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1021863692
 MeshFilter:
@@ -16521,13 +16753,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 692134044}
   lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  fTile: {fileID: 235891456}
+  bTile: {fileID: 64082683}
+  uTile: {fileID: 2136222414}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -16535,12 +16766,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1023810976
 MonoBehaviour:
@@ -16688,13 +16919,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
+  lTile: {fileID: 1996057141}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  bTile: {fileID: 1931686457}
+  uTile: {fileID: 1675143641}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -16702,12 +16932,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1033597081
 MonoBehaviour:
@@ -16763,6 +16993,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -16778,12 +17009,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1033778917
 MeshFilter:
@@ -16890,6 +17123,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 20
     vertexCount: 4
     localAABB:
@@ -16907,6 +17141,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -17095,26 +17330,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  rTile: {fileID: 1965241157}
+  lTile: {fileID: 1666909903}
+  fTile: {fileID: 1931808023}
+  bTile: {fileID: 331330412}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 2141677015}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1048818998
 MonoBehaviour:
@@ -17142,6 +17376,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 6
     localAABB:
@@ -17159,6 +17394,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 080009000500090004000500
   m_Skin: []
   m_VertexData:
@@ -17298,6 +17534,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -17313,12 +17550,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1058018939
 MeshFilter:
@@ -17368,6 +17607,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -17383,12 +17623,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1062492424
 MeshFilter:
@@ -17524,6 +17766,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -17539,12 +17782,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1069588214
 MeshFilter:
@@ -17566,6 +17811,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -17583,6 +17829,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -17765,6 +18012,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -17780,12 +18028,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1096488550
 MeshFilter:
@@ -17841,26 +18091,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
+  lTile: {fileID: 1495024521}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  bTile: {fileID: 458003781}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 1716603927}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1096860441
 MonoBehaviour:
@@ -17916,6 +18165,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -17931,12 +18181,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1101240107
 MeshFilter:
@@ -18028,6 +18280,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -18043,12 +18296,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1105804842
 MeshFilter:
@@ -18198,6 +18453,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -18215,6 +18471,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -18326,6 +18583,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -18343,6 +18601,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -18488,26 +18747,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 758951097}
+  lTile: {fileID: 1178753036}
+  fTile: {fileID: 1658035904}
+  bTile: {fileID: 1434937515}
+  uTile: {fileID: 2141677015}
+  dTile: {fileID: 762289246}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1129949741
 MonoBehaviour:
@@ -18577,6 +18835,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -18594,6 +18853,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -18739,13 +18999,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 700971365}
   lTile: {fileID: 0}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  bTile: {fileID: 295631529}
+  uTile: {fileID: 2104294875}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -18753,12 +19012,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1132787005
 MonoBehaviour:
@@ -18814,6 +19073,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -18829,12 +19089,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1150864880
 MeshFilter:
@@ -18899,6 +19161,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -18916,6 +19179,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -19055,6 +19319,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -19070,12 +19335,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1168973697
 MeshFilter:
@@ -19168,6 +19435,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -19183,12 +19451,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1178476066
 MeshFilter:
@@ -19244,26 +19514,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 1129949740}
+  lTile: {fileID: 857939343}
+  fTile: {fileID: 261026444}
+  bTile: {fileID: 1966809105}
+  uTile: {fileID: 2129275650}
+  dTile: {fileID: 1781430192}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1178753037
 MonoBehaviour:
@@ -19410,13 +19679,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  rTile: {fileID: 2018491896}
+  lTile: {fileID: 1435059061}
+  fTile: {fileID: 295631529}
+  bTile: {fileID: 661358783}
+  uTile: {fileID: 2145292019}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -19424,12 +19692,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1202182658
 MonoBehaviour:
@@ -19457,6 +19725,7 @@ Mesh:
     firstByte: 0
     indexCount: 78
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 45
     localAABB:
@@ -19474,6 +19743,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 02000900000000000900010009000d00010001000d0003000b0008000e0008000f000e0022000b0023000b0024002300040006001000060007001000100007001100110007000500120013000c00130014000c00140015000c0016000a00170017000a00180018000a0019001a001b001c001b001d001c001e001f0020001f002100200025002600270026002800270029002a002b002a002c002b00
   m_Skin: []
   m_VertexData:
@@ -19613,6 +19883,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -19628,12 +19899,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1213721533
 MeshFilter:
@@ -19689,13 +19962,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  lTile: {fileID: 2005531148}
+  fTile: {fileID: 1653582878}
   bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  uTile: {fileID: 2095421887}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -19703,12 +19975,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1216780115
 MonoBehaviour:
@@ -19949,26 +20221,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  lTile: {fileID: 2141677015}
+  fTile: {fileID: 1894283202}
+  bTile: {fileID: 264281135}
+  uTile: {fileID: 1965241157}
+  dTile: {fileID: 758951097}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1259722836
 MonoBehaviour:
@@ -20054,10 +20325,12 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!4 &1271668193
 Transform:
   m_ObjectHideFlags: 0
@@ -20197,6 +20470,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -20212,12 +20486,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1298897147
 MeshFilter:
@@ -20366,6 +20642,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -20383,6 +20660,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -20547,7 +20825,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: a8b707899b1d4bf4cb3a2a2021ce2895, type: 2}
   m_PrefabInternal: {fileID: 1560717052}
   m_GameObject: {fileID: 1322628325}
-  m_LocalRotation: {x: 0.011156243, y: -0.09401831, z: 0.07679265, w: 0.99254173}
+  m_LocalRotation: {x: 0.011156242, y: -0.0940183, z: 0.07679264, w: 0.9925417}
   m_LocalPosition: {x: -1.971897, y: 0.271989, z: -1.0396295}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000002}
   m_Children:
@@ -20610,6 +20888,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -20625,12 +20904,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1322860427
 MeshFilter:
@@ -20722,6 +21003,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -20737,12 +21019,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1326270585
 MeshFilter:
@@ -20764,6 +21048,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 4
     localAABB:
@@ -20781,6 +21066,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000
   m_Skin: []
   m_VertexData:
@@ -20920,6 +21206,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -20935,12 +21222,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1340162670
 MeshFilter:
@@ -20996,26 +21285,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 1
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
+  lTile: {fileID: 943426592}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  bTile: {fileID: 1666909903}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 486286941}
   rSide: 102
   lSide: 102
   fSide: 102
   bSide: 102
   uSide: -1
   dSide: 101
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 102
+  lSideWorld: 102
+  fSideWorld: 102
+  bSideWorld: 102
+  uSideWorld: -1
+  dSideWorld: 101
   sideRemovedCounter: 0
 --- !u!114 &1340651527
 MonoBehaviour:
@@ -21119,26 +21407,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  lTile: {fileID: 766198380}
+  fTile: {fileID: 264281135}
   bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  uTile: {fileID: 1401938211}
+  dTile: {fileID: 2095421887}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1351257607
 MonoBehaviour:
@@ -21166,6 +21453,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -21183,6 +21471,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -21371,26 +21660,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  rTile: {fileID: 331330412}
+  lTile: {fileID: 2001017424}
+  fTile: {fileID: 1666909903}
+  bTile: {fileID: 425276850}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 1959085379}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1366894262
 MonoBehaviour:
@@ -21532,6 +21820,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -21547,12 +21836,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1376192865
 MeshFilter:
@@ -21820,26 +22111,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  lTile: {fileID: 1788461898}
+  fTile: {fileID: 1785078463}
   bTile: {fileID: 0}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 1351257606}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1401938212
 MonoBehaviour:
@@ -21937,6 +22227,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -21952,12 +22243,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1408434375
 MeshFilter:
@@ -22007,6 +22300,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -22022,12 +22316,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1410808110
 MeshFilter:
@@ -22162,6 +22458,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -22177,12 +22474,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1427610434
 MeshFilter:
@@ -22232,6 +22531,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -22247,12 +22547,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1427645404
 MeshFilter:
@@ -22274,6 +22576,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -22291,6 +22594,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -22436,26 +22740,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 936474584}
+  lTile: {fileID: 1966809105}
+  fTile: {fileID: 1129949740}
+  bTile: {fileID: 503936910}
+  uTile: {fileID: 608132038}
+  dTile: {fileID: 1987063667}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1434937516
 MonoBehaviour:
@@ -22517,13 +22820,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 1202182657}
   lTile: {fileID: 0}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  bTile: {fileID: 235891456}
+  uTile: {fileID: 71438191}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -22531,12 +22833,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1435059062
 MonoBehaviour:
@@ -22634,6 +22936,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -22649,12 +22952,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1440119567
 MeshFilter:
@@ -22789,6 +23094,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -22804,12 +23110,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1445923904
 MeshFilter:
@@ -22865,26 +23173,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 2001017424}
   lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  fTile: {fileID: 1630049946}
+  bTile: {fileID: 458153223}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 1835936987}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1462289155
 MonoBehaviour:
@@ -22912,6 +23219,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 16
     vertexCount: 4
     localAABB:
@@ -22929,6 +23237,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -23040,6 +23349,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -23057,6 +23367,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -23414,26 +23725,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 1
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
+  lTile: {fileID: 2076691508}
   fTile: {fileID: 0}
   bTile: {fileID: 0}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 1830345791}
   rSide: 102
   lSide: 102
   fSide: 102
   bSide: 102
   uSide: -1
   dSide: 101
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 102
+  lSideWorld: 102
+  fSideWorld: 102
+  bSideWorld: 102
+  uSideWorld: -1
+  dSideWorld: 101
   sideRemovedCounter: 0
 --- !u!114 &1495024522
 MonoBehaviour:
@@ -23489,6 +23799,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -23504,12 +23815,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1497213638
 MeshFilter:
@@ -23644,6 +23957,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -23659,12 +23973,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1501466244
 MeshFilter:
@@ -23720,26 +24036,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 1340651526}
+  lTile: {fileID: 975232816}
+  fTile: {fileID: 2076691508}
+  bTile: {fileID: 728588590}
+  uTile: {fileID: 943426592}
+  dTile: {fileID: 2145292019}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1504218143
 MonoBehaviour:
@@ -23887,13 +24202,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  rTile: {fileID: 1987063667}
+  lTile: {fileID: 692134044}
+  fTile: {fileID: 1781430192}
+  bTile: {fileID: 1730417143}
+  uTile: {fileID: 1966809105}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -23901,12 +24215,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1522038442
 MonoBehaviour:
@@ -24094,13 +24408,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  lTile: {fileID: 976308707}
+  fTile: {fileID: 677604675}
+  bTile: {fileID: 1996057141}
+  uTile: {fileID: 1716603927}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -24108,12 +24421,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1530124092
 MonoBehaviour:
@@ -24175,26 +24488,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
+  lTile: {fileID: 1931808023}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  bTile: {fileID: 1965241157}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 1894283202}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1537195176
 MonoBehaviour:
@@ -24222,6 +24534,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -24239,6 +24552,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -24464,6 +24778,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -24479,12 +24794,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1557918049
 MeshFilter:
@@ -24553,6 +24870,7 @@ Mesh:
     firstByte: 0
     indexCount: 24
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 24
     localAABB:
@@ -24570,6 +24888,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000080009000500090004000500100011001200120011001300140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -24751,6 +25070,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -24766,12 +25086,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1572785557
 MeshFilter:
@@ -24821,6 +25143,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -24836,12 +25159,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1580250899
 MeshFilter:
@@ -24891,6 +25216,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -24906,12 +25232,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1586468286
 MeshFilter:
@@ -24933,6 +25261,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 20
     vertexCount: 4
     localAABB:
@@ -24950,6 +25279,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -25076,6 +25406,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -25091,12 +25422,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1604681908
 MeshFilter:
@@ -25257,6 +25590,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 24
     localAABB:
@@ -25274,6 +25608,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -25419,26 +25754,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
+  lTile: {fileID: 700971365}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  bTile: {fileID: 1716603927}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 677604675}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1626475109
 MonoBehaviour:
@@ -25500,26 +25834,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 579031416}
   lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  fTile: {fileID: 1809270412}
+  bTile: {fileID: 1462289154}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 182620617}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1630049947
 MonoBehaviour:
@@ -25581,26 +25914,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  rTile: {fileID: 766198380}
+  lTile: {fileID: 1766008057}
+  fTile: {fileID: 1959085379}
   bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  uTile: {fileID: 425276850}
+  dTile: {fileID: 987028799}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1631773658
 MonoBehaviour:
@@ -25628,6 +25960,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 20
     localAABB:
@@ -25645,6 +25978,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 080009000500090004000500140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -25790,13 +26124,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 1
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
+  rTile: {fileID: 677604675}
+  lTile: {fileID: 1132787004}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  bTile: {fileID: 976308707}
+  uTile: {fileID: 700971365}
   dTile: {fileID: 0}
   rSide: 101
   lSide: 101
@@ -25804,12 +26137,12 @@ MonoBehaviour:
   bSide: 101
   uSide: 101
   dSide: 101
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 101
+  lSideWorld: 101
+  fSideWorld: 101
+  bSideWorld: 101
+  uSideWorld: 101
+  dSideWorld: 101
   sideRemovedCounter: 0
 --- !u!114 &1632150012
 MonoBehaviour:
@@ -25865,6 +26198,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -25880,12 +26214,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1636226221
 MeshFilter:
@@ -25991,6 +26327,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 16
     localAABB:
@@ -26008,6 +26345,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 080009000500090004000500100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -26195,13 +26533,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  lTile: {fileID: 1987063667}
+  fTile: {fileID: 1931686457}
+  bTile: {fileID: 1216780114}
+  uTile: {fileID: 936474584}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -26209,12 +26546,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1653582879
 MonoBehaviour:
@@ -26276,26 +26613,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 1675143641}
+  lTile: {fileID: 261026444}
+  fTile: {fileID: 1716603927}
+  bTile: {fileID: 1129949740}
+  uTile: {fileID: 458003781}
+  dTile: {fileID: 1996057141}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1658035905
 MonoBehaviour:
@@ -26351,6 +26687,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -26366,12 +26703,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1664591924
 MeshFilter:
@@ -26427,26 +26766,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 1
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  lTile: {fileID: 579031416}
+  fTile: {fileID: 1340651526}
   bTile: {fileID: 0}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 2129275650}
   rSide: 102
   lSide: 102
   fSide: 102
   bSide: 102
   uSide: -1
   dSide: 101
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 102
+  lSideWorld: 102
+  fSideWorld: 102
+  bSideWorld: 102
+  uSideWorld: -1
+  dSideWorld: 101
   sideRemovedCounter: 0
 --- !u!114 &1666909904
 MonoBehaviour:
@@ -26545,6 +26883,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -26560,12 +26899,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1670112881
 MeshFilter:
@@ -26587,6 +26928,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 6
     localAABB:
@@ -26604,6 +26946,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 080009000500090004000500
   m_Skin: []
   m_VertexData:
@@ -26792,26 +27135,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
+  lTile: {fileID: 1658035904}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  bTile: {fileID: 758951097}
+  uTile: {fileID: 1894283202}
+  dTile: {fileID: 1033597080}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1675143642
 MonoBehaviour:
@@ -26910,6 +27252,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -26925,12 +27268,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1681503258
 MeshFilter:
@@ -27022,6 +27367,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -27037,12 +27383,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1696398703
 MeshFilter:
@@ -27219,6 +27567,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -27234,12 +27583,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1709135289
 MeshFilter:
@@ -27331,6 +27682,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -27346,12 +27698,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1714286012
 MeshFilter:
@@ -27416,6 +27770,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 20
     vertexCount: 4
     localAABB:
@@ -27433,6 +27788,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -27544,6 +27900,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 10
     localAABB:
@@ -27561,6 +27918,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000080009000500090004000500
   m_Skin: []
   m_VertexData:
@@ -27706,26 +28064,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  lTile: {fileID: 1495024521}
+  fTile: {fileID: 1626475108}
+  bTile: {fileID: 1658035904}
+  uTile: {fileID: 1096860440}
+  dTile: {fileID: 1530124091}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1716603928
 MonoBehaviour:
@@ -27781,6 +28138,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -27796,12 +28154,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1722888816
 MeshFilter:
@@ -27902,13 +28262,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  rTile: {fileID: 2005531148}
+  lTile: {fileID: 533424731}
+  fTile: {fileID: 1522038441}
   bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  uTile: {fileID: 987028799}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -27916,12 +28275,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1730417144
 MonoBehaviour:
@@ -27991,6 +28350,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -28008,6 +28368,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -28119,6 +28480,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 20
     localAABB:
@@ -28136,6 +28498,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 080009000500090004000500140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -28247,6 +28610,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 6
     localAABB:
@@ -28264,6 +28628,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 080009000500090004000500
   m_Skin: []
   m_VertexData:
@@ -28409,26 +28774,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 1966809105}
+  lTile: {fileID: 2136222414}
+  fTile: {fileID: 857939343}
+  bTile: {fileID: 2094995053}
+  uTile: {fileID: 738964055}
+  dTile: {fileID: 692134044}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1750580360
 MonoBehaviour:
@@ -28456,6 +28820,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 16
     vertexCount: 4
     localAABB:
@@ -28473,6 +28838,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -28674,26 +29040,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  rTile: {fileID: 1631773657}
+  lTile: {fileID: 700075847}
+  fTile: {fileID: 738964055}
   bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  uTile: {fileID: 1795140019}
+  dTile: {fileID: 2094995053}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!1001 &1768778965
 Prefab:
@@ -28826,13 +29191,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  rTile: {fileID: 762289246}
+  lTile: {fileID: 661358783}
+  fTile: {fileID: 2018491896}
+  bTile: {fileID: 1522038441}
+  uTile: {fileID: 1178753036}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -28840,12 +29204,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1781430193
 MonoBehaviour:
@@ -28907,26 +29271,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  lTile: {fileID: 331330412}
+  fTile: {fileID: 1965241157}
+  bTile: {fileID: 1401938211}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 264281135}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1785078464
 MonoBehaviour:
@@ -28954,6 +29317,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 16
     localAABB:
@@ -28971,6 +29335,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 080009000500090004000500100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -29116,26 +29481,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  rTile: {fileID: 1401938211}
+  lTile: {fileID: 425276850}
+  fTile: {fileID: 331330412}
   bTile: {fileID: 0}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 766198380}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1788461899
 MonoBehaviour:
@@ -29191,6 +29555,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -29206,12 +29571,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1791440359
 MeshFilter:
@@ -29267,26 +29634,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  rTile: {fileID: 425276850}
+  lTile: {fileID: 458153223}
+  fTile: {fileID: 2001017424}
   bTile: {fileID: 0}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 1766008057}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1795140020
 MonoBehaviour:
@@ -29428,6 +29794,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -29443,12 +29810,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1808624121
 MeshFilter:
@@ -29504,26 +29873,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 943426592}
   lTile: {fileID: 0}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  bTile: {fileID: 1630049946}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 975232816}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1809270413
 MonoBehaviour:
@@ -29593,6 +29961,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 20
     localAABB:
@@ -29610,6 +29979,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 080009000500090004000500140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -29721,6 +30091,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 16
     vertexCount: 4
     localAABB:
@@ -29738,6 +30109,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -29860,7 +30232,7 @@ Light:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1825810162}
   m_Enabled: 1
-  serializedVersion: 7
+  serializedVersion: 8
   m_Type: 1
   m_Color: {r: 0.7941176, g: 0.7941176, b: 0.7941176, a: 1}
   m_Intensity: 0.2
@@ -29885,6 +30257,8 @@ Light:
   m_Lightmapping: 1
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1825810164
@@ -30039,26 +30413,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 1
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
+  rTile: {fileID: 1716603927}
+  lTile: {fileID: 684045032}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  bTile: {fileID: 261026444}
+  uTile: {fileID: 1495024521}
+  dTile: {fileID: 976308707}
   rSide: 101
   lSide: 101
   fSide: 101
   bSide: 101
   uSide: 101
   dSide: 101
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 101
+  lSideWorld: 101
+  fSideWorld: 101
+  bSideWorld: 101
+  uSideWorld: 101
+  dSideWorld: 101
   sideRemovedCounter: 0
 --- !u!114 &1830345792
 MonoBehaviour:
@@ -30086,6 +30459,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -30103,6 +30477,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -30242,6 +30617,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -30257,12 +30633,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1833108280
 MeshFilter:
@@ -30318,26 +30696,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 738964055}
   lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  fTile: {fileID: 182620617}
+  bTile: {fileID: 700075847}
+  uTile: {fileID: 1462289154}
+  dTile: {fileID: 2136222414}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1835936988
 MonoBehaviour:
@@ -30435,6 +30812,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -30450,12 +30828,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1840461116
 MeshFilter:
@@ -30634,6 +31014,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -30649,12 +31030,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1859005148
 MeshFilter:
@@ -30704,6 +31087,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -30719,12 +31103,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1869484782
 MeshFilter:
@@ -30788,6 +31174,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 16
     vertexCount: 4
     localAABB:
@@ -30805,6 +31192,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -30950,26 +31338,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
+  lTile: {fileID: 458003781}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  bTile: {fileID: 1259722835}
+  uTile: {fileID: 1537195175}
+  dTile: {fileID: 1675143641}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1894283203
 MonoBehaviour:
@@ -31109,6 +31496,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -31124,12 +31512,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1907900129
 MeshFilter:
@@ -31194,6 +31584,7 @@ Mesh:
     firstByte: 0
     indexCount: 18
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 24
     localAABB:
@@ -31211,6 +31602,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000080009000500090004000500140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -31407,6 +31799,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -31424,6 +31817,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -31569,13 +31963,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  lTile: {fileID: 762289246}
+  fTile: {fileID: 1033597080}
+  bTile: {fileID: 1653582878}
+  uTile: {fileID: 758951097}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -31583,12 +31976,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1931686458
 MonoBehaviour:
@@ -31650,26 +32043,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
+  rTile: {fileID: 1537195175}
+  lTile: {fileID: 1340651526}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  bTile: {fileID: 1048818997}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 458003781}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1931808024
 MonoBehaviour:
@@ -31768,6 +32160,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -31783,12 +32176,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &1939615168
 MeshFilter:
@@ -31896,6 +32291,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 24
     localAABB:
@@ -31913,6 +32309,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -32058,26 +32455,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 608132038}
+  lTile: {fileID: 738964055}
+  fTile: {fileID: 1666909903}
+  bTile: {fileID: 1631773657}
+  uTile: {fileID: 1366894261}
+  dTile: {fileID: 1966809105}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1959085380
 MonoBehaviour:
@@ -32139,26 +32535,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  lTile: {fileID: 1048818997}
+  fTile: {fileID: 1537195175}
+  bTile: {fileID: 1785078463}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 1259722835}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1965241158
 MonoBehaviour:
@@ -32220,26 +32615,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 1434937515}
+  lTile: {fileID: 1750580359}
+  fTile: {fileID: 1178753036}
+  bTile: {fileID: 987028799}
+  uTile: {fileID: 1959085379}
+  dTile: {fileID: 1522038441}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1966809106
 MonoBehaviour:
@@ -32429,13 +32823,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  rTile: {fileID: 1653582878}
+  lTile: {fileID: 1522038441}
+  fTile: {fileID: 762289246}
+  bTile: {fileID: 2005531148}
+  uTile: {fileID: 1434937515}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -32443,12 +32836,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1987063668
 MonoBehaviour:
@@ -32476,6 +32869,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -32493,6 +32887,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -32638,13 +33033,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  rTile: {fileID: 1033597080}
+  lTile: {fileID: 2018491896}
+  fTile: {fileID: 1530124091}
+  bTile: {fileID: 762289246}
+  uTile: {fileID: 1658035904}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -32652,12 +33046,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &1996057142
 MonoBehaviour:
@@ -32719,26 +33113,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  rTile: {fileID: 1366894261}
+  lTile: {fileID: 1462289154}
+  fTile: {fileID: 579031416}
+  bTile: {fileID: 1795140019}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 738964055}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &2001017425
 MonoBehaviour:
@@ -32843,13 +33236,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  rTile: {fileID: 1216780114}
+  lTile: {fileID: 1730417143}
+  fTile: {fileID: 1987063667}
   bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  uTile: {fileID: 503936910}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -32857,12 +33249,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &2005531149
 MonoBehaviour:
@@ -33012,13 +33404,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
+  rTile: {fileID: 1996057141}
+  lTile: {fileID: 1202182657}
+  fTile: {fileID: 976308707}
+  bTile: {fileID: 1781430192}
+  uTile: {fileID: 261026444}
   dTile: {fileID: 0}
   rSide: 1
   lSide: 1
@@ -33026,12 +33417,12 @@ MonoBehaviour:
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &2018491897
 MonoBehaviour:
@@ -33172,6 +33563,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -33187,12 +33579,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &2036521674
 MeshFilter:
@@ -33214,6 +33608,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 20
     vertexCount: 4
     localAABB:
@@ -33231,6 +33626,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -33342,6 +33738,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 20
     localAABB:
@@ -33359,6 +33756,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -33541,6 +33939,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -33556,12 +33955,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &2048585412
 MeshFilter:
@@ -33696,6 +34097,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -33711,12 +34113,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &2053141206
 MeshFilter:
@@ -33766,6 +34170,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -33781,12 +34186,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &2055667493
 MeshFilter:
@@ -33808,6 +34215,7 @@ Mesh:
     firstByte: 0
     indexCount: 78
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 45
     localAABB:
@@ -33825,6 +34233,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 02000900000000000900010009000d00010001000d0003000b0008000e0008000f000e0022000b0023000b0024002300040006001000060007001000100007001100110007000500120013000c00130014000c00140015000c0016000a00170017000a00180018000a0019001a001b001c001b001d001c001e001f0020001f002100200025002600270026002800270029002a002b002a002c002b00
   m_Skin: []
   m_VertexData:
@@ -34006,6 +34415,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -34021,12 +34431,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &2057421575
 MeshFilter:
@@ -34048,6 +34460,7 @@ Mesh:
     firstByte: 0
     indexCount: 18
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 24
     localAABB:
@@ -34065,6 +34478,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000100011001200120011001300140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -34218,6 +34632,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 20
     vertexCount: 4
     localAABB:
@@ -34235,6 +34650,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -34388,6 +34804,7 @@ Mesh:
     firstByte: 0
     indexCount: 0
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 0
     localAABB:
@@ -34405,6 +34822,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 
   m_Skin: []
   m_VertexData:
@@ -34678,26 +35096,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 1495024521}
   lTile: {fileID: 0}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  bTile: {fileID: 1504218142}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 684045032}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &2076691509
 MonoBehaviour:
@@ -34759,26 +35176,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 2094995053}
   lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  fTile: {fileID: 2136222414}
   bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  uTile: {fileID: 700075847}
+  dTile: {fileID: 64082683}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &2081311476
 MonoBehaviour:
@@ -34806,6 +35222,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 0
     vertexCount: 20
     localAABB:
@@ -34823,6 +35240,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 030000000200030001000000100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -34934,6 +35352,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 16
     vertexCount: 4
     localAABB:
@@ -34951,6 +35370,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -35139,26 +35559,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  rTile: {fileID: 987028799}
+  lTile: {fileID: 2081311475}
+  fTile: {fileID: 1750580359}
   bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  uTile: {fileID: 1766008057}
+  dTile: {fileID: 533424731}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &2094995054
 MonoBehaviour:
@@ -35220,26 +35639,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
   rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
+  lTile: {fileID: 503936910}
+  fTile: {fileID: 936474584}
   bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  uTile: {fileID: 1351257606}
+  dTile: {fileID: 1216780114}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &2095421888
 MonoBehaviour:
@@ -35337,6 +35755,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -35352,12 +35771,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &2098625539
 MeshFilter:
@@ -35413,26 +35834,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 700971365}
   lTile: {fileID: 0}
   fTile: {fileID: 0}
-  bTile: {fileID: 0}
+  bTile: {fileID: 684045032}
   uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  dTile: {fileID: 1132787004}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &2104294876
 MonoBehaviour:
@@ -35488,6 +35908,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -35503,12 +35924,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &2106909021
 MeshFilter:
@@ -35530,6 +35953,7 @@ Mesh:
     firstByte: 0
     indexCount: 6
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 6
     localAABB:
@@ -35547,6 +35971,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 080009000500090004000500
   m_Skin: []
   m_VertexData:
@@ -35742,6 +36167,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 16
     vertexCount: 8
     localAABB:
@@ -35759,6 +36185,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 100011001200120011001300140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -36037,26 +36464,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 2141677015}
+  lTile: {fileID: 728588590}
+  fTile: {fileID: 1340651526}
+  bTile: {fileID: 1959085379}
+  uTile: {fileID: 1666909903}
+  dTile: {fileID: 1178753036}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &2129275651
 MonoBehaviour:
@@ -36118,26 +36544,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
+  rTile: {fileID: 1750580359}
   lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  fTile: {fileID: 334686283}
+  bTile: {fileID: 2081311475}
+  uTile: {fileID: 1835936987}
+  dTile: {fileID: 1023810975}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &2136222415
 MonoBehaviour:
@@ -36193,6 +36618,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -36208,12 +36634,14 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &2137260722
 MeshFilter:
@@ -36269,26 +36697,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 1259722835}
+  lTile: {fileID: 1666909903}
+  fTile: {fileID: 458003781}
+  bTile: {fileID: 608132038}
+  uTile: {fileID: 1048818997}
+  dTile: {fileID: 1129949740}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &2141677016
 MonoBehaviour:
@@ -36316,6 +36743,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 4
     vertexCount: 16
     localAABB:
@@ -36333,6 +36761,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 080009000500090004000500100011001200120011001300
   m_Skin: []
   m_VertexData:
@@ -36444,6 +36873,7 @@ Mesh:
     firstByte: 0
     indexCount: 12
     topology: 0
+    baseVertex: 0
     firstVertex: 16
     vertexCount: 8
     localAABB:
@@ -36461,6 +36891,7 @@ Mesh:
   m_IsReadable: 0
   m_KeepVertices: 1
   m_KeepIndices: 1
+  m_IndexFormat: 0
   m_IndexBuffer: 100011001200120011001300140015001600160017001400
   m_Skin: []
   m_VertexData:
@@ -36606,26 +37037,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: 0
   TileLayer:
-    serializedVersion: 2
     m_Bits: 4294967295
-  rTile: {fileID: 0}
-  lTile: {fileID: 0}
-  fTile: {fileID: 0}
-  bTile: {fileID: 0}
-  uTile: {fileID: 0}
-  dTile: {fileID: 0}
+  rTile: {fileID: 261026444}
+  lTile: {fileID: 71438191}
+  fTile: {fileID: 684045032}
+  bTile: {fileID: 857939343}
+  uTile: {fileID: 1504218142}
+  dTile: {fileID: 1202182657}
   rSide: 1
   lSide: 1
   fSide: 1
   bSide: 1
   uSide: 1
   dSide: 1
-  rSideWorld: 0
-  lSideWorld: 0
-  fSideWorld: 0
-  bSideWorld: 0
-  uSideWorld: 0
-  dSideWorld: 0
+  rSideWorld: 1
+  lSideWorld: 1
+  fSideWorld: 1
+  bSideWorld: 1
+  uSideWorld: 1
+  dSideWorld: 1
   sideRemovedCounter: 0
 --- !u!114 &2145292020
 MonoBehaviour:

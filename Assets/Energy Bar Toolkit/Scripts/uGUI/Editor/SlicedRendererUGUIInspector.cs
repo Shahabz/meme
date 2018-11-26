@@ -323,12 +323,12 @@ public class SlicedRendererUGUIInspector : EnergyBarUGUIInspectorBase {
             MadGUI.PropertyField(spriteBarMinSize, "Min Size");
 
             using (MadGUI.Indent()) {
-                if (dir == EnergyBarRenderer.GrowDirection.RadialCW || dir == EnergyBarRenderer.GrowDirection.RadialCCW) {
+                if (dir == EnergyBarBase.GrowDirection.RadialCW || dir == EnergyBarBase.GrowDirection.RadialCCW) {
                     MadGUI.Indent(() => {
                         EditorGUILayout.Slider(radialOffset, -1, 1, "Offset");
                         EditorGUILayout.Slider(radialLength, 0, 1, "Length");
                     });
-                } else if (dir == EnergyBarRenderer.GrowDirection.ColorChange) {
+                } else if (dir == EnergyBarBase.GrowDirection.ColorChange) {
                     EditorGUILayout.PropertyField(spriteBarGradient, new GUIContent("Bar Gradient"));
                 }
             }

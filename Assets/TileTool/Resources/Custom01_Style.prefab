@@ -86,6 +86,8 @@ MonoBehaviour:
   - {fileID: 100000, guid: 87f34f9e869a75c4293d58e7be718f74, type: 2}
   - {fileID: 100002, guid: 24df27a4caf0b08409cd04b93e90cb6d, type: 2}
   - {fileID: 100000, guid: f8c3f449dd347ab48a8ffc46bc793f1e, type: 2}
+  _objectFolder: TileTool/Prefabs/Objects/Custom01/
+  _tileFolder: TileTool/Prefabs/Tiles/Custom01/
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

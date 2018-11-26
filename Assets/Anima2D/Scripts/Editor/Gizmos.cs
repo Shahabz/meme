@@ -14,7 +14,7 @@ namespace Anima2D
 
 		static Gizmos()
 		{
-			EditorApplication.hierarchyWindowChanged += HierarchyWindowChanged;
+			EditorCallbacks.hierarchyChanged += HierarchyChanged;
 		}
 
 		static bool IsVisible(Bone2D bone)
@@ -38,7 +38,7 @@ namespace Anima2D
 		}
 
 		[UnityEditor.Callbacks.DidReloadScripts]
-		static void HierarchyWindowChanged()
+		static void HierarchyChanged()
 		{
 			s_Bones = GameObject.FindObjectsOfType<Bone2D>().ToList();
 			s_Controls = GameObject.FindObjectsOfType<Control>().ToList();
@@ -208,7 +208,11 @@ namespace Anima2D
 								bool guiEnabled = GUI.enabled;
 								GUI.enabled = !IsLocked(control.gameObject);
 
+#if UNITY_5_6_OR_NEWER
+								Vector3 newPosition = Handles.FreeMoveHandle(transform.position, transform.rotation, size, Vector3.zero, Handles.RectangleHandleCap);
+#else
 								Vector3 newPosition = Handles.FreeMoveHandle(transform.position, transform.rotation, size, Vector3.zero, Handles.RectangleCap);
+#endif
 
 								GUI.enabled = guiEnabled;
 

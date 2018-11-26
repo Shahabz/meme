@@ -1,0 +1,6 @@
+
+
+These single meshes was created by using Simple Mesh Combine.
+Simple Mesh Combine can be purchased seperatly at the Unity Asset Store.
+https://www.assetstore.unity3d.com/en/#!/content/8748?aid=1101lGph
+

@@ -141,11 +141,40 @@ public abstract class EnergyBarUGUIBase : EnergyBarBase {
     }
 
     protected T CreateChild<T>(string childName, Transform parent) where T : Component {
-        var child = MadTransform.CreateChild<T>(parent, "generated_" + childName);
+        var child = CreateChild<T>(parent, "generated_" + childName);
         createdChildren.Add(child.gameObject);
         SetAsLastGenerated(child.transform);
         ApplyDebugMode(child.gameObject, debugMode);
         return child;
+    }
+    
+    public static T CreateChild<T>(Transform parent, string name, bool disabled = false) where T : Component
+    {
+        GameObject go;
+
+        if (parent is RectTransform)
+        {
+            go = new GameObject(name, typeof(RectTransform));
+        }
+        else
+        {
+            go = new GameObject(name);
+        }
+        if (disabled)
+        {
+            MadGameObject.SetActive(go, false);
+        }
+        
+        go.transform.SetParent(parent);
+        go.transform.localRotation = Quaternion.identity;
+        go.transform.localScale = Vector3.one;
+        go.transform.localPosition = Vector3.zero;
+        T obj = go.GetComponent<T>();
+        if (obj == null)
+            obj = go.AddComponent<T>();
+        if (MadTransform.registerUndo)
+            MadUndo.RegisterCreatedObjectUndo(go, "Created " + name);
+        return obj;
     }
 
     private void SetAsLastGenerated(Transform child) {

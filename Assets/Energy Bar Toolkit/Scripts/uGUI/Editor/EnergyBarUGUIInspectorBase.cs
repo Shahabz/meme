@@ -184,6 +184,32 @@ public class EnergyBarUGUIInspectorBase : EnergyBarInspectorBase {
             }
         }
     }
+
+    protected void EnsureFullRect(SerializedProperty spriteObject)
+    {
+        var sprite = (Sprite) spriteObject.objectReferenceValue;
+        if (sprite == null) {
+            return;
+        }
+        
+        var texture = sprite.texture;
+
+        var assetPath = AssetDatabase.GetAssetPath(texture);
+        var importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
+        
+        var textureImporterSettings = new TextureImporterSettings();
+        importer.ReadTextureSettings(textureImporterSettings);
+
+        if (textureImporterSettings.spriteMeshType != SpriteMeshType.FullRect)
+        {
+            if (MadGUI.ErrorFix("Texture Mesh Type must be set to Full Rect", "Fix Now"))
+            {
+                textureImporterSettings.spriteMeshType = SpriteMeshType.FullRect;
+                importer.SetTextureSettings(textureImporterSettings);
+                AssetDatabase.ImportAsset(assetPath, ImportAssetOptions.ForceUpdate);
+            }
+        }
+    }
 }
 
 } // namespace

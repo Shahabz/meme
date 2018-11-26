@@ -290,6 +290,8 @@ public class FillerRendererUGUIInspector : EnergyBarUGUIInspectorBase {
 #if !UNITY_5
             EnsureReadable(spriteBar);
 #endif
+            
+            EnsureFullRect(spriteBar);
 
             EditorGUILayout.Space();
 
@@ -327,12 +329,12 @@ public class FillerRendererUGUIInspector : EnergyBarUGUIInspectorBase {
             MadGUI.PropertyFieldEnumPopup(growDirection, "Grow Direction");
 
             using (MadGUI.Indent()) {
-                if (dir == EnergyBarRenderer.GrowDirection.RadialCW || dir == EnergyBarRenderer.GrowDirection.RadialCCW) {
+                if (dir == EnergyBarBase.GrowDirection.RadialCW || dir == EnergyBarBase.GrowDirection.RadialCCW) {
                     MadGUI.Indent(() => {
                         EditorGUILayout.Slider(radialOffset, -1, 1, "Offset");
                         EditorGUILayout.Slider(radialLength, 0, 1, "Length");
                     });
-                } else if (dir == EnergyBarRenderer.GrowDirection.ColorChange) {
+                } else if (dir == EnergyBarBase.GrowDirection.ColorChange) {
                     EditorGUILayout.PropertyField(spriteBarGradient, new GUIContent("Bar Gradient"));
                 }
             }

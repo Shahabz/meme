@@ -30,6 +30,8 @@ public class EBTPackerPolicy : IPackerPolicy {
         return 8;
     }
 
+    public bool AllowSequentialPacking { get; private set; }
+
     protected virtual string TagPrefix { get { return "[TIGHT]"; } }
     protected virtual bool AllowTightWhenTagged { get { return true; } }
 

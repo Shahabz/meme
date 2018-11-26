@@ -57,6 +57,7 @@ public class MasterItem : CsvData<MasterItemParam> {
 		}
 	}
 
+	/*
 	override protected MasterItemParam makeParam(List<SpreadSheetData> _list, int _iSerial, int _iRow)
 	{
 		int iIndex = 1;
@@ -114,7 +115,7 @@ public class MasterItem : CsvData<MasterItemParam> {
 		retParam.description_FR = dataFRDescription.param;
 		return retParam;
 	}
-
+	*/
 
 }
 

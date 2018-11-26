@@ -1,4 +1,6 @@
-﻿// Shader by Tim C
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Shader by Tim C
 // http://forum.unity3d.com/threads/ugui-masking-blocked-by-background-meshes.270122/
 Shader "Energy Bar Toolkit/Canvas Mask Clear"
 {
@@ -55,7 +57,7 @@ Shader "Energy Bar Toolkit/Canvas Mask Clear"
             v2f vert(appdata_t IN)
             {
                 v2f OUT;
-                OUT.vertex = mul(UNITY_MATRIX_MVP, IN.vertex);
+                OUT.vertex = UnityObjectToClipPos(IN.vertex);
                 OUT.color = IN.color;
                 return OUT;
             }
