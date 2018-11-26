@@ -44,6 +44,9 @@ using UnityEngine;
 /// <para>Author: Bob Berkebile (http://pixelplacement.com)</para>
 /// <para>Support: http://itween.pixelplacement.com</para>
 /// </summary>
+
+#pragma warning disable 0618
+
 public class iTween : MonoBehaviour{
 		
 	#region Variables
