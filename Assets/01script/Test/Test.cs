@@ -11,8 +11,10 @@ public class Test : MonoBehaviour {
 		Debug.LogError(gameObject.GetComponent<Image>().rectTransform.sizeDelta.x);
 		Debug.LogError(gameObject.GetComponent<Image>().rectTransform.sizeDelta.y);
 
-		float width = CanvasSize.Instance.canvasHeight * 640.0f / 1136.0f;
-		img.rectTransform.sizeDelta = new Vector2(width, 0);
+		if( CanvasSize.Instance != null ){
+			float width = CanvasSize.Instance.canvasHeight * 640.0f / 1136.0f;
+			img.rectTransform.sizeDelta = new Vector2(width, 0);
+		}
 	}
 	
 	// Update is called once per frame
