@@ -1,4 +1,4 @@
-// Copyright (c) 2011 Bob Berkebile (pixelplacment)
+﻿// Copyright (c) 2011 Bob Berkebile (pixelplacment)
 // Please direct any bugs/comments/suggestions to http://pixelplacement.com
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,6 +31,11 @@ Neither the name of the author nor the names of contributors may be used to endo
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#if UNITY_2017_1_OR_NEWER
+#else
+#define USE_LEGACY_GUI
+#endif
+
 #region Namespaces
 using System;
 using System.Collections;
@@ -39,14 +44,12 @@ using System.Reflection;
 using UnityEngine;
 #endregion
 
+
 /// <summary>
-/// <para>Version: 2.0.5</para>	 
+/// <para>Version: 2.0.46</para>	 
 /// <para>Author: Bob Berkebile (http://pixelplacement.com)</para>
 /// <para>Support: http://itween.pixelplacement.com</para>
 /// </summary>
-
-#pragma warning disable 0618
-
 public class iTween : MonoBehaviour{
 		
 	#region Variables
@@ -700,13 +703,16 @@ public class iTween : MonoBehaviour{
 		if (!args.Contains("easetype")) {
 			args.Add("easetype",EaseType.linear);
 		}
-		
+
 		//set tempColor and base fromColor:
-		if(target.GetComponent<GUITexture>()){
+#if USE_LEGACY_GUI
+		if (target.GetComponent<GUITexture>()){
 			tempColor=fromColor=target.GetComponent<GUITexture>().color;	
 		}else if(target.GetComponent<GUIText>()){
 			tempColor=fromColor=target.GetComponent<GUIText>().material.color;
-		}else if(target.GetComponent<Renderer>()){
+		}else
+#endif
+		if (target.GetComponent<Renderer>()){
 			tempColor=fromColor=target.GetComponent<Renderer>().material.color;
 		}else if(target.GetComponent<Light>()){
 			tempColor=fromColor=target.GetComponent<Light>().color;
@@ -738,13 +744,16 @@ public class iTween : MonoBehaviour{
 			fromColor.a=(float)args["alpha"];
 			args.Remove("alpha");
 		}
-		
+
 		//apply fromColor:
-		if(target.GetComponent<GUITexture>()){
+#if USE_LEGACY_GUI
+		if (target.GetComponent<GUITexture>()){
 			target.GetComponent<GUITexture>().color=fromColor;	
 		}else if(target.GetComponent<GUIText>()){
 			target.GetComponent<GUIText>().material.color=fromColor;
-		}else if(target.GetComponent<Renderer>()){
+		}else
+#endif
+		if(target.GetComponent<Renderer>()){
 			target.GetComponent<Renderer>().material.color=fromColor;
 		}else if(target.GetComponent<Light>()){
 			target.GetComponent<Light>().color=fromColor;
@@ -3110,9 +3119,9 @@ public class iTween : MonoBehaviour{
 		Launch(target,args);
 	}	
 	
-	#endregion
+#endregion
 	
-	#region #2 Generate Method Targets
+#region #2 Generate Method Targets
 	
 	//call correct set target method and set tween application delegate:
 	void GenerateTargets(){
@@ -3255,9 +3264,9 @@ public class iTween : MonoBehaviour{
 		}
 	}
 	
-	#endregion
+#endregion
 	
-	#region #3 Generate Specific Targets
+#region #3 Generate Specific Targets
 	
 	void GenerateRectTargets(){
 		//values holder [0] from, [1] to, [2] calculated value from ease equation:
@@ -3327,15 +3336,18 @@ public class iTween : MonoBehaviour{
 	void GenerateColorToTargets(){
 		//values holder [0] from, [1] to, [2] calculated value from ease equation:
 		//colors = new Color[3];
-		
+
 		//from and init to values:
-		if(GetComponent<GUITexture>()){
+#if USE_LEGACY_GUI
+		if (GetComponent<GUITexture>()){
 			colors = new Color[1,3];
 			colors[0,0] = colors[0,1] = GetComponent<GUITexture>().color;
 		}else if(GetComponent<GUIText>()){
 			colors = new Color[1,3];
 			colors[0,0] = colors[0,1] = GetComponent<GUIText>().material.color;
-		}else if(GetComponent<Renderer>()){
+		}else
+#endif
+		if(GetComponent<Renderer>()){
 			colors = new Color[GetComponent<Renderer>().materials.Length,3];
 			for (int i = 0; i < GetComponent<Renderer>().materials.Length; i++) {
 				colors[i,0]=GetComponent<Renderer>().materials[i].GetColor(namedcolorvalue.ToString());
@@ -3872,8 +3884,14 @@ public class iTween : MonoBehaviour{
 		vector3s[3] = thisTransform.eulerAngles;		
 		
 		//root:
-		vector3s[0]=thisTransform.position;
-		
+		if(isLocal)
+		{
+			vector3s[0]=transform.localPosition;
+		}
+		else
+		{
+			vector3s[0]=transform.position;
+		}
 		//amount:
 		if (tweenArguments.Contains("amount")) {
 			vector3s[1]=(Vector3)tweenArguments["amount"];
@@ -4011,9 +4029,9 @@ public class iTween : MonoBehaviour{
 		}
 	}
 	
-	#endregion
+#endregion
 	
-	#region #4 Apply Targets
+#region #4 Apply Targets
 	
 	void ApplyRectTargets(){
 		//calculate:
@@ -4103,15 +4121,18 @@ public class iTween : MonoBehaviour{
 		colors[2].b = ease(colors[0].b,colors[1].b,percentage);
 		colors[2].a = ease(colors[0].a,colors[1].a,percentage);
 		*/
-		
+
 		//apply:
-		if(GetComponent<GUITexture>()){
+#if USE_LEGACY_GUI
+		if (GetComponent<GUITexture>()){
 			//guiTexture.color=colors[2];
 			GetComponent<GUITexture>().color=colors[0,2];
 		}else if(GetComponent<GUIText>()){
 			//guiText.material.color=colors[2];
 			GetComponent<GUIText>().material.color=colors[0,2];
-		}else if(GetComponent<Renderer>()){
+		}else
+#endif
+		if(GetComponent<Renderer>()){
 			//renderer.material.color=colors[2];
 			for (int i = 0; i < colors.GetLength(0); i++) {
 				GetComponent<Renderer>().materials[i].SetColor(namedcolorvalue.ToString(),colors[i,2]);
@@ -4123,15 +4144,18 @@ public class iTween : MonoBehaviour{
 		
 		//dial in:
 		if(percentage==1){
+#if USE_LEGACY_GUI
 			if(GetComponent<GUITexture>()){
 				//guiTexture.color=colors[1];
 				GetComponent<GUITexture>().color=colors[0,1];
 			}else if(GetComponent<GUIText>()){
 				//guiText.material.color=colors[1];
 				GetComponent<GUIText>().material.color=colors[0,1];
-			}else if(GetComponent<Renderer>()){
-				//renderer.material.color=colors[1];	
-				for (int i = 0; i < colors.GetLength(0); i++) {
+			}else 
+#endif
+			if (GetComponent<Renderer>()){
+			//renderer.material.color=colors[1];	
+			for (int i = 0; i < colors.GetLength(0); i++) {
 					GetComponent<Renderer>().materials[i].SetColor(namedcolorvalue.ToString(),colors[i,1]);
 				}
 			}else if(GetComponent<Light>()){
@@ -4585,9 +4609,9 @@ public class iTween : MonoBehaviour{
 		*/
 	}		
 	
-	#endregion	
+#endregion
 	
-	#region #5 Tween Steps
+#region #5 Tween Steps
 	
 	IEnumerator TweenDelay(){
 		delayStarted = Time.time;
@@ -4682,9 +4706,9 @@ public class iTween : MonoBehaviour{
 		}
 	}	
 	
-	#endregion
+#endregion
 	
-	#region #6 Update Callable
+#region #6 Update Callable
 	
 	/// <summary>
 	/// Returns a Rect that is eased between a current and target value by the supplied speed.
@@ -4849,13 +4873,16 @@ public class iTween : MonoBehaviour{
 		}else{
 			time=Defaults.updateTime;
 		}
-		
+
 		//init values:
+#if USE_LEGACY_GUI
 		if(target.GetComponent<GUITexture>()){
 			colors[0] = colors[1] = target.GetComponent<GUITexture>().color;
 		}else if(target.GetComponent<GUIText>()){
 			colors[0] = colors[1] = target.GetComponent<GUIText>().material.color;
-		}else if(target.GetComponent<Renderer>()){
+		}else 
+#endif
+		if (target.GetComponent<Renderer>()){
 			colors[0] = colors[1] = target.GetComponent<Renderer>().material.color;
 		}else if(target.GetComponent<Light>()){
 			colors[0] = colors[1] = target.GetComponent<Light>().color;	
@@ -4884,13 +4911,16 @@ public class iTween : MonoBehaviour{
 		colors[3].g=Mathf.SmoothDamp(colors[0].g,colors[1].g,ref colors[2].g,time);
 		colors[3].b=Mathf.SmoothDamp(colors[0].b,colors[1].b,ref colors[2].b,time);
 		colors[3].a=Mathf.SmoothDamp(colors[0].a,colors[1].a,ref colors[2].a,time);
-				
+
 		//apply:
+#if USE_LEGACY_GUI
 		if(target.GetComponent<GUITexture>()){
 			target.GetComponent<GUITexture>().color=colors[3];
 		}else if(target.GetComponent<GUIText>()){
 			target.GetComponent<GUIText>().material.color=colors[3];
-		}else if(target.GetComponent<Renderer>()){
+		}else
+#endif
+		if (target.GetComponent<Renderer>()){
 			target.GetComponent<Renderer>().material.color=colors[3];
 		}else if(target.GetComponent<Light>()){
 			target.GetComponent<Light>().color=colors[3];	
@@ -5398,9 +5428,9 @@ public class iTween : MonoBehaviour{
 		LookUpdate(target,Hash("looktarget",looktarget,"time",time));
 	}
 
-	#endregion
+#endregion
 	
-	#region #7 External Utilities
+#region #7 External Utilities
 	
 	/// <summary>
 	/// Returns the length of a curved path drawn through the provided array of Transforms.
@@ -6015,7 +6045,9 @@ public class iTween : MonoBehaviour{
 	/// </param>
 	public static void CameraFadeSwap(Texture2D texture){
 		if(cameraFade){
+#if USE_LEGACY_GUI
 			cameraFade.GetComponent<GUITexture>().texture=texture;
+#endif
 		}
 	}
 	
@@ -6038,9 +6070,11 @@ public class iTween : MonoBehaviour{
 			//establish colorFade object:
 			cameraFade = new GameObject("iTween Camera Fade");
 			cameraFade.transform.position= new Vector3(.5f,.5f,depth);
+#if USE_LEGACY_GUI
 			cameraFade.AddComponent<GUITexture>();
 			cameraFade.GetComponent<GUITexture>().texture=texture;
 			cameraFade.GetComponent<GUITexture>().color = new Color(.5f,.5f,.5f,0);
+#endif
 			return cameraFade;
 		}
 	}
@@ -6061,9 +6095,11 @@ public class iTween : MonoBehaviour{
 			//establish colorFade object:
 			cameraFade = new GameObject("iTween Camera Fade");
 			cameraFade.transform.position= new Vector3(.5f,.5f,Defaults.cameraFadeDepth);
+#if USE_LEGACY_GUI
 			cameraFade.AddComponent<GUITexture>();
 			cameraFade.GetComponent<GUITexture>().texture=texture;
 			cameraFade.GetComponent<GUITexture>().color = new Color(.5f,.5f,.5f,0);
+#endif
 			return cameraFade;
 		}
 	}
@@ -6081,9 +6117,11 @@ public class iTween : MonoBehaviour{
 			//establish colorFade object:
 			cameraFade = new GameObject("iTween Camera Fade");
 			cameraFade.transform.position= new Vector3(.5f,.5f,Defaults.cameraFadeDepth);
+#if USE_LEGACY_GUI
 			cameraFade.AddComponent<GUITexture>();
 			cameraFade.GetComponent<GUITexture>().texture=CameraTexture(Color.black);
 			cameraFade.GetComponent<GUITexture>().color = new Color(.5f,.5f,.5f,0);
+#endif
 			return cameraFade;
 		}
 	}	
@@ -6548,9 +6586,9 @@ public class iTween : MonoBehaviour{
 		}
 	}	
 	
-	#endregion		
+#endregion
 
-	#region Component Segments
+#region Component Segments
 	
 	private iTween(Hashtable h) {
 		tweenArguments = h;	
@@ -6636,9 +6674,9 @@ public class iTween : MonoBehaviour{
 		DisableKinematic();
 	}
 	
-	#endregion
+#endregion
 	
-	#region Internal Helpers
+#region Internal Helpers
 	
 	private static void DrawLineHelper(Vector3[] line, Color color, string method){
 		Gizmos.color=color;
@@ -7145,9 +7183,9 @@ public class iTween : MonoBehaviour{
 		StartCoroutine("TweenDelay");
 	}	
 	
-	#endregion	
+#endregion
 	
-	#region Easing Curves
+#region Easing Curves
 	
 	private float linear(float start, float end, float value){
 		return Mathf.Lerp(start, end, value);
@@ -7454,9 +7492,9 @@ public class iTween : MonoBehaviour{
 	}		
 	/* GFX47 MOD END */
 	
-	#endregion	
+#endregion
 	
-	#region Deprecated and Renamed
+#region Deprecated and Renamed
 	/*
 	public static void audioFrom(GameObject target, Hashtable args){Debug.LogError("iTween Error: audioFrom() has been renamed to AudioFrom().");}
 	public static void audioTo(GameObject target, Hashtable args){Debug.LogError("iTween Error: audioTo() has been renamed to AudioTo().");}
@@ -7502,5 +7540,5 @@ public class iTween : MonoBehaviour{
 	public static void stopType(GameObject target, Hashtable args){Debug.LogError("iTween Error: stopType() has been deprecated. Please investigate Stop().");}
 	public static void tweenCount(GameObject target, Hashtable args){Debug.LogError("iTween Error: tweenCount() has been deprecated. Please investigate Count().");}
 	*/
-	#endregion
+#endregion
 } 
