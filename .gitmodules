@@ -1,6 +1,4 @@
 [submodule "Assets/everystudio-library"]
 	path = Assets/everystudio-library
 	url = https://github.com/everystudio/everystudio-library
-[submodule "Assets/Utage"]
-	path = Assets/Utage
-	url = https://github.com/everystudio/Utage
+
