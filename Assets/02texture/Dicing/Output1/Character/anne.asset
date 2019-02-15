@@ -181,79 +181,79 @@ MonoBehaviour:
     infoList:
     - path: Assets/02texture/Dicing/Input/Character/anne/angry02_02.png
       guid: 0c08d5695358c4d96ba7757263ce8e88
-      timeStamp: 636855641920000000
+      timeStamp: 636858615245482000
     - path: Assets/02texture/Dicing/Input/Character/anne/smile02_02.png
       guid: 0e51f75644c144a798cc71ada75a4c53
-      timeStamp: 636855641920000000
+      timeStamp: 636858615247312000
     - path: Assets/02texture/Dicing/Input/Character/anne/angry01_01.png
       guid: 28de45170fdf14711aaa581218f50fec
-      timeStamp: 636855641920000000
+      timeStamp: 636858615244302000
     - path: Assets/02texture/Dicing/Input/Character/anne/shy01_01.png
       guid: 32a287fe6adbf4628a27d9bbca0c97f8
-      timeStamp: 636855641920000000
+      timeStamp: 636858615246752000
     - path: Assets/02texture/Dicing/Input/Character/anne/normal01_02.png
       guid: 3f1d5b9c10e904c3d82bafef22e68801
-      timeStamp: 636855641920000000
+      timeStamp: 636858615246152000
     - path: Assets/02texture/Dicing/Input/Character/anne/shy01_02.png
       guid: 466b712b1c78b4aaebaaad57b52f499d
-      timeStamp: 636855641920000000
+      timeStamp: 636858615246862000
     - path: Assets/02texture/Dicing/Input/Character/anne/angry02_01.png
       guid: 47df74ed5370a46fe9dcafb30ca4d7b8
-      timeStamp: 636855641920000000
+      timeStamp: 636858615245142000
     - path: Assets/02texture/Dicing/Input/Character/anne/sad01_01.png
       guid: 545f2a0a9d9514ec9b42fbac4e40fd2a
-      timeStamp: 636855641920000000
+      timeStamp: 636858615246232000
     - path: Assets/02texture/Dicing/Input/Character/anne/normal01_01.png
       guid: 5752182fc5be745f58c72c2839d1bb35
-      timeStamp: 636855641920000000
+      timeStamp: 636858615245832000
     - path: Assets/02texture/Dicing/Input/Character/anne/trouble02_02.png
       guid: 65646386e83ee4127807d244f4f7e5cd
-      timeStamp: 636855641920000000
+      timeStamp: 636858615248372000
     - path: Assets/02texture/Dicing/Input/Character/anne/surprize02_02.png
       guid: 74b1561503cf944f2b73395a774fcc07
-      timeStamp: 636855641920000000
+      timeStamp: 636858615247762000
     - path: Assets/02texture/Dicing/Input/Character/anne/sad02_01.png
       guid: 776ebed588a1d4c5c82dbc3c207c0d59
-      timeStamp: 636855641920000000
+      timeStamp: 636858615246462000
     - path: Assets/02texture/Dicing/Input/Character/anne/surprize01_02.png
       guid: 8f9bbad641f00422cbd1e99e6be4e566
-      timeStamp: 636855641920000000
+      timeStamp: 636858615247552000
     - path: Assets/02texture/Dicing/Input/Character/anne/smile01_01.png
       guid: 92bee6c2d1cd54a6ca80f2f37921f8ce
-      timeStamp: 636855641920000000
+      timeStamp: 636858615246962000
     - path: Assets/02texture/Dicing/Input/Character/anne/smile01_02.png
       guid: 945a8ddb6cfb3452cba6c599574e814a
-      timeStamp: 636855641920000000
+      timeStamp: 636858615247072000
     - path: Assets/02texture/Dicing/Input/Character/anne/sad01_02.png
       guid: a0e976c32ff8f40389f13692503e7621
-      timeStamp: 636855641920000000
+      timeStamp: 636858615246312000
     - path: Assets/02texture/Dicing/Input/Character/anne/sad02_02.png
       guid: ae69c87ce39624e8cbfa430160a8cbe5
-      timeStamp: 636855641920000000
+      timeStamp: 636858615246632000
     - path: Assets/02texture/Dicing/Input/Character/anne/surprize01_01.png
       guid: b5fb1750de98148c9a58a74ce794cdfc
-      timeStamp: 636855641920000000
+      timeStamp: 636858615247482000
     - path: Assets/02texture/Dicing/Input/Character/anne/surprize02_01.png
       guid: b99894fd41d784e55aa6d9be1b21236c
-      timeStamp: 636855641920000000
+      timeStamp: 636858615247632000
     - path: Assets/02texture/Dicing/Input/Character/anne/trans01_01.png
       guid: c2001302167dc427a99982c29f1688f9
-      timeStamp: 636855641920000000
+      timeStamp: 636858615247842000
     - path: Assets/02texture/Dicing/Input/Character/anne/angry01_02.png
       guid: cb36a607ce8824dc6b93a2a100a945b5
-      timeStamp: 636855641920000000
+      timeStamp: 636858615244722000
     - path: Assets/02texture/Dicing/Input/Character/anne/trouble01_01.png
       guid: d35b5567e170f4ed0a12207b49fcadb5
-      timeStamp: 636855641920000000
+      timeStamp: 636858615248012000
     - path: Assets/02texture/Dicing/Input/Character/anne/trans01_02.png
       guid: e7b5808c3e2974491acf8501e73adeaa
-      timeStamp: 636855641920000000
+      timeStamp: 636858615247942000
     - path: Assets/02texture/Dicing/Input/Character/anne/smile02_01.png
       guid: e87790d5b650b4999bb82023d5364ea6
-      timeStamp: 636855641920000000
+      timeStamp: 636858615247152000
     - path: Assets/02texture/Dicing/Input/Character/anne/trouble02_01.png
       guid: fa22c5c138fe042a6b14b22480da1b34
-      timeStamp: 636855641920000000
+      timeStamp: 636858615248262000
     - path: Assets/02texture/Dicing/Input/Character/anne/trouble01_02.png
       guid: fe5ee14068b464370b45d6c5698796ee
-      timeStamp: 636855641920000000
+      timeStamp: 636858615248142000
