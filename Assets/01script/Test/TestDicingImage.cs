@@ -12,18 +12,18 @@ public class TestDicingImage : MonoBehaviour {
 
 		Debug.Log("TestDicingImage.Start");
 
-		yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetBundle("image/chara/anneliese",
+		yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetBundle("image/chara/anne",
 				(bool _bResult, string _strError) => {
 					if(_bResult)
 					{
 						//masterChara.Load(AssetBundleManager.Instance.GetAsset<TextAsset>("master_data" , "master_chara.csv"));
-						dicing_image.DicingData = AssetBundleManager.Instance.GetAsset<Utage.DicingTextures>("image/chara/anneliese" , "anneliese.asset");
+						dicing_image.DicingData = AssetBundleManager.Instance.GetAsset<Utage.DicingTextures>("image/chara/anne" , "anne.asset");
 
 						dicing_image.ChangePattern( "normal01_01");
 
-						Debug.Log(AssetBundleManager.Instance.GetAsset<Utage.DicingTextures>("image/chara/anneliese" , "image/chara/anneliese.asset"));
-						Debug.Log(AssetBundleManager.Instance.GetAsset<Utage.DicingTextures>("image/chara/anneliese" , "Assets/02texture/Dicing/Output1/Character/anneliese.asset"));
-						Debug.Log(AssetBundleManager.Instance.GetAsset<Utage.DicingTextures>("image/chara/anneliese" , "anneliese.asset"));
+						Debug.Log(AssetBundleManager.Instance.GetAsset<Utage.DicingTextures>("image/chara/anne" , "image/chara/anne.asset"));
+						Debug.Log(AssetBundleManager.Instance.GetAsset<Utage.DicingTextures>("image/chara/anne" , "Assets/02texture/Dicing/Output1/Character/anne.asset"));
+						Debug.Log(AssetBundleManager.Instance.GetAsset<Utage.DicingTextures>("image/chara/anne" , "anne.asset"));
 					}
 					else{
 						Debug.Log("fail");
