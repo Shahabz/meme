@@ -2,15 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CampMainAction : MonoBehaviour {
+using HutongGames.PlayMaker;
 
-	// Use this for initialization
-	void Start () {
+namespace CampMainAction {
+
+	public class CampMainActionBase : FsmStateAction
+	{
+		protected CampMain campMain;
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			campMain = Owner.GetComponent<CampMain>();
+		}
+	}
+	[ActionCategory("CampMainAction")]
+	[HutongGames.PlayMaker.Tooltip("CampMainAction")]
+	public class Sample : CampMainActionBase{
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
+
 }
