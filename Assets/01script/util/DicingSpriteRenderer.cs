@@ -18,8 +18,11 @@ namespace Utage
 	/// <summary>
 	/// ダイシング（賽の目状に分割・再結合）処理したイメージ表示
 	/// </summary>
-	public class DicingSpriteRenderer : MaskableGraphic
+	public class DicingSpriteRenderer : MonoBehaviour
 	{
+
+		public SpriteRenderer m_renderer;
+
 		//ダイシングデータ
 		public DicingTextures DicingData
 		{
@@ -29,11 +32,28 @@ namespace Utage
 				dicingData = value;
 				pattern = "";
 				OnChangePattern();
-				this.SetAllDirty();
+				//this.SetAllDirty();
 			}
 		}
 		[SerializeField]
 		DicingTextures dicingData;
+
+
+		void Start(){
+
+			Debug.Log(m_renderer.sprite.vertices.Length);
+			foreach(Vector2 var in m_renderer.sprite.vertices){
+				Debug.Log(string.Format("x={0} y={1}",var.x,var.y));
+			}
+
+
+			MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+			mpb.Clear();
+
+			mpb.SetVector(1 ,new Vector4(1,1,0,0.5f));
+
+			m_renderer.SetPropertyBlock(mpb);
+		}
 
 		//現在のパターン名
 		private string Pattern
@@ -48,7 +68,7 @@ namespace Utage
 				}
 				pattern = value;
 				OnChangePattern();
-				this.SetAllDirty();
+				//this.SetAllDirty();
 			}
 		}
 
@@ -130,12 +150,13 @@ namespace Utage
 			set
 			{
 				uvRect = value;
-				this.SetAllDirty();
+				//this.SetAllDirty();
 			}
 		}
 		[SerializeField]
 		Rect uvRect = new Rect(0,0,1,1);
 
+		/* 
 		//テクスチャ―（これはアトラス画像になる）
 		public override Texture mainTexture
 		{
@@ -152,7 +173,7 @@ namespace Utage
 
 				return m_Texture;
 			}
-		}
+		}*/
 		Texture m_Texture;
 
 		//パターンチェンジ（通常で言うテクスチャ差し替え）
@@ -160,7 +181,7 @@ namespace Utage
 		{
 			if (DicingData == null || string.IsNullOrEmpty(pattern))
 			{
-				m_Texture = s_WhiteTexture;
+				//m_Texture = s_WhiteTexture;
 				return;
 			}
 
@@ -173,7 +194,7 @@ namespace Utage
 
 			this.m_Texture = DicingData.GetTexture(patternData.AtlasName);
 		}
-
+/* 
 		//本来のサイズに合わせる
 		public override void SetNativeSize()
 		{
@@ -182,7 +203,7 @@ namespace Utage
 			rectTransform.anchorMax = rectTransform.anchorMin;
 			rectTransform.sizeDelta = GetNaitiveSize();
 		}
-
+*/
 		internal List<DicingTextureData.QuadVerts> GetVerts(DicingTextureData patternData)
 		{
 			return DicingData.GetVerts(patternData);
@@ -195,12 +216,12 @@ namespace Utage
 		}
 
 		//描画ポリゴンつくる
-		protected override void OnPopulateMesh(VertexHelper vh)
+		protected  void OnPopulateMesh(VertexHelper vh)
 		{
 			Debug.Log("OnPopulateMesh");
 			OnChangePattern();
 			if (PatternData == null) return;
-			var color32 = color;
+			var color32 = Color.white;
 			vh.Clear();
 
 			int index = 0;
@@ -223,31 +244,25 @@ namespace Utage
 		//描画頂点データに対してForeachする（途中でberakした場合はfalseが帰る）
 		protected void ForeachVertexList(Action<Rect, Rect> function)
 		{
+			/* 
 			//描画領域
 			Rect r = GetPixelAdjustedRect();
-			PatternData.ForeachVertexList(r, this.uvRect, this.skipTransParentCell, this.DicingData, function);
+			PatternData.ForeachVertexList(r, this.uvRect, this.skipTransParentCell, this.DicingData, function);*/
 		}
 
+	/* 
 		//ヒットテスト
 		public bool IsRaycastLocationValid(Vector2 sp, Camera eventCamera)
 		{
 			Vector2 localPosition;
 			RectTransformUtility.ScreenPointToLocalPointInRectangle(this.rectTransform, sp, eventCamera, out localPosition);
 			return HitTest(localPosition);
-		}
+		}*/
 
 
 		public bool HitTest(Vector2 localPosition)
 		{
-			if (!GetPixelAdjustedRect().Contains(localPosition)) return false;
-			if (PatternData == null) return false;
-
 			bool isHit = false;
-			this.ForeachVertexList(
-				(r, uv) =>
-				{
-					isHit |= r.Contains(localPosition);
-				});
 			return isHit;
 		}
 #if UNITY_EDITOR
@@ -268,9 +283,12 @@ namespace Utage
 			protected SerializedProperty skipTransParentCell;
 			protected SerializedProperty uvRect;
 
+			protected SerializedProperty sprite_renderer;
+
 
 			protected void OnEnable()
 			{
+				/*
 				m_Script = serializedObject.FindProperty("m_Script");
 				m_Color = serializedObject.FindProperty("m_Color");
 				m_Material = serializedObject.FindProperty("m_Material");
@@ -282,13 +300,15 @@ namespace Utage
 				pattern = serializedObject.FindProperty("pattern");
 				skipTransParentCell = serializedObject.FindProperty("skipTransParentCell");
 				uvRect = serializedObject.FindProperty("uvRect");
+				 */
+				sprite_renderer = serializedObject.FindProperty("m_renderer");
 			}
 
 			//インスペクター描画
 			public override void OnInspectorGUI()
 			{
 				serializedObject.Update();
-
+				/*
 				EditorGUI.BeginDisabledGroup(true);
 				EditorGUILayout.PropertyField(m_Script);
 				EditorGUI.EndDisabledGroup();
@@ -316,6 +336,9 @@ namespace Utage
 					}
 				}
 				EditorGUILayout.EndHorizontal();
+				 */
+
+				EditorGUILayout.PropertyField(sprite_renderer);
 
 				serializedObject.ApplyModifiedProperties();
 			}
