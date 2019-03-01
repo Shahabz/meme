@@ -6,20 +6,26 @@ public class TestDicingImage : MonoBehaviour {
 
 	public Utage.DicingImage dicing_image;
 
+	public string assetbundle_name;
+	public string asset_name;
+	public string start_pattern;
+
+
+
 	// Use this for initialization
 	IEnumerator Start () {
 		AssetBundleManager.Instance.Initialize("",0);
 
 		Debug.Log("TestDicingImage.Start");
 
-		yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetBundle("image/chara/anne",
+		yield return StartCoroutine(AssetBundleManager.Instance.LoadAssetBundle(assetbundle_name,
 				(bool _bResult, string _strError) => {
 					if(_bResult)
 					{
 						//masterChara.Load(AssetBundleManager.Instance.GetAsset<TextAsset>("master_data" , "master_chara.csv"));
-						dicing_image.DicingData = AssetBundleManager.Instance.GetAsset<Utage.DicingTextures>("image/chara/anne" , "anne.asset");
+						dicing_image.DicingData = AssetBundleManager.Instance.GetAsset<Utage.DicingTextures>(assetbundle_name, asset_name);
 
-						dicing_image.ChangePattern( "normal01_01");
+						dicing_image.ChangePattern(start_pattern);
 
 						Debug.Log(AssetBundleManager.Instance.GetAsset<Utage.DicingTextures>("image/chara/anne" , "image/chara/anne.asset"));
 						Debug.Log(AssetBundleManager.Instance.GetAsset<Utage.DicingTextures>("image/chara/anne" , "Assets/02texture/Dicing/Output1/Character/anne.asset"));
