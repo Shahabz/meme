@@ -300,16 +300,16 @@ MonoBehaviour:
     dataVersion: 2
     usedInTemplate: {fileID: 0}
     name: "\u72B6\u614B\u9077\u79FB"
-    startState: State 1
+    startState: setup_scene
     states:
-    - name: State 1
+    - name: setup_scene
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
         x: 50
         y: 100
-        width: 100
+        width: 106
         height: 32
       isBreakpoint: 0
       isSequence: 0
@@ -326,12 +326,14 @@ MonoBehaviour:
       actionData:
         actionNames:
         - EveryStudioLibrary.AddScene
+        - EveryStudioLibrary.AddScene
         customNames:
         - 
-        actionEnabled: 01
-        actionIsOpen: 01
-        actionStartIndex: 00000000
-        actionHashCodes: c8ed5705
+        - 
+        actionEnabled: 0101
+        actionIsOpen: 0101
+        actionStartIndex: 0000000003000000
+        actionHashCodes: c8ed5705c8ed5705
         unityObjectParams: []
         fsmGameObjectParams: []
         fsmOwnerDefaultParams: []
@@ -360,6 +362,24 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: party
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: assets/00scene/parts/header
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: header
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -378,13 +398,16 @@ MonoBehaviour:
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 120000001200000012000000
+        paramDataType: 120000001200000012000000120000001200000012000000
         paramName:
         - assetbundle_url
         - assetbundle_name
         - scene_name
-        paramDataPos: 000000000100000002000000
-        paramByteDataSize: 000000000000000000000000
+        - assetbundle_url
+        - assetbundle_name
+        - scene_name
+        paramDataPos: 000000000100000002000000030000000400000005000000
+        paramByteDataSize: 000000000000000000000000000000000000000000000000
     - name: State 2
       description: 
       colorIndex: 0
